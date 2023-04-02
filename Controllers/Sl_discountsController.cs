@@ -14,44 +14,44 @@ using apiFacturacionPrb.Models;
 namespace apiFacturacionPrb.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class prd_brandsController : ApiController
+    public class Sl_discountsController : ApiController
     {
         private Model2 db = new Model2();
 
-        // GET: api/prd_brands
-        public IQueryable<prd_brands> Getprd_brands()
+        // GET: api/Sl_discounts
+        public IQueryable<Sl_discounts> GetSl_discounts()
         {
-            return db.prd_brands;
+            return db.Sl_discounts;
         }
 
-        // GET: api/prd_brands/5
-        [ResponseType(typeof(prd_brands))]
-        public IHttpActionResult Getprd_brands(int id)
+        // GET: api/Sl_discounts/5
+        [ResponseType(typeof(Sl_discounts))]
+        public IHttpActionResult GetSl_discounts(int id)
         {
-            prd_brands prd_brands = db.prd_brands.Find(id);
-            if (prd_brands == null)
+            Sl_discounts sl_discounts = db.Sl_discounts.Find(id);
+            if (sl_discounts == null)
             {
                 return NotFound();
             }
 
-            return Ok(prd_brands);
+            return Ok(sl_discounts);
         }
 
-        // PUT: api/prd_brands/5
+        // PUT: api/Sl_discounts/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putprd_brands(int id, prd_brands prd_brands)
+        public IHttpActionResult PutSl_discounts(int id, Sl_discounts sl_discounts)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != prd_brands.id)
+            if (id != sl_discounts.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(prd_brands).State = EntityState.Modified;
+            db.Entry(sl_discounts).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace apiFacturacionPrb.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!prd_brandsExists(id))
+                if (!Sl_discountsExists(id))
                 {
                     return NotFound();
                 }
@@ -72,35 +72,35 @@ namespace apiFacturacionPrb.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/prd_brands
-        [ResponseType(typeof(prd_brands))]
-        public IHttpActionResult Postprd_brands(prd_brands prd_brands)
+        // POST: api/Sl_discounts
+        [ResponseType(typeof(Sl_discounts))]
+        public IHttpActionResult PostSl_discounts(Sl_discounts sl_discounts)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.prd_brands.Add(prd_brands);
+            db.Sl_discounts.Add(sl_discounts);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = prd_brands.id }, prd_brands);
+            return CreatedAtRoute("DefaultApi", new { id = sl_discounts.id }, sl_discounts);
         }
 
-        // DELETE: api/prd_brands/5
-        [ResponseType(typeof(prd_brands))]
-        public IHttpActionResult Deleteprd_brands(int id)
+        // DELETE: api/Sl_discounts/5
+        [ResponseType(typeof(Sl_discounts))]
+        public IHttpActionResult DeleteSl_discounts(int id)
         {
-            prd_brands prd_brands = db.prd_brands.Find(id);
-            if (prd_brands == null)
+            Sl_discounts sl_discounts = db.Sl_discounts.Find(id);
+            if (sl_discounts == null)
             {
                 return NotFound();
             }
 
-            db.prd_brands.Remove(prd_brands);
+            db.Sl_discounts.Remove(sl_discounts);
             db.SaveChanges();
 
-            return Ok(prd_brands);
+            return Ok(sl_discounts);
         }
 
         protected override void Dispose(bool disposing)
@@ -112,9 +112,9 @@ namespace apiFacturacionPrb.Controllers
             base.Dispose(disposing);
         }
 
-        private bool prd_brandsExists(int id)
+        private bool Sl_discountsExists(int id)
         {
-            return db.prd_brands.Count(e => e.id == id) > 0;
+            return db.Sl_discounts.Count(e => e.id == id) > 0;
         }
     }
 }

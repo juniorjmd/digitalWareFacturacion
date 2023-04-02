@@ -14,44 +14,44 @@ using apiFacturacionPrb.Models;
 namespace apiFacturacionPrb.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class prd_brandsController : ApiController
+    public class Sl_documentController : ApiController
     {
         private Model2 db = new Model2();
 
-        // GET: api/prd_brands
-        public IQueryable<prd_brands> Getprd_brands()
+        // GET: api/Sl_document
+        public IQueryable<Sl_document> GetSl_document()
         {
-            return db.prd_brands;
+            return db.Sl_document;
         }
 
-        // GET: api/prd_brands/5
-        [ResponseType(typeof(prd_brands))]
-        public IHttpActionResult Getprd_brands(int id)
+        // GET: api/Sl_document/5
+        [ResponseType(typeof(Sl_document))]
+        public IHttpActionResult GetSl_document(int id)
         {
-            prd_brands prd_brands = db.prd_brands.Find(id);
-            if (prd_brands == null)
+            Sl_document sl_document = db.Sl_document.Find(id);
+            if (sl_document == null)
             {
                 return NotFound();
             }
 
-            return Ok(prd_brands);
+            return Ok(sl_document);
         }
 
-        // PUT: api/prd_brands/5
+        // PUT: api/Sl_document/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putprd_brands(int id, prd_brands prd_brands)
+        public IHttpActionResult PutSl_document(int id, Sl_document sl_document)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != prd_brands.id)
+            if (id != sl_document.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(prd_brands).State = EntityState.Modified;
+            db.Entry(sl_document).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace apiFacturacionPrb.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!prd_brandsExists(id))
+                if (!Sl_documentExists(id))
                 {
                     return NotFound();
                 }
@@ -72,35 +72,35 @@ namespace apiFacturacionPrb.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/prd_brands
-        [ResponseType(typeof(prd_brands))]
-        public IHttpActionResult Postprd_brands(prd_brands prd_brands)
+        // POST: api/Sl_document
+        [ResponseType(typeof(Sl_document))]
+        public IHttpActionResult PostSl_document(Sl_document sl_document)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.prd_brands.Add(prd_brands);
+            db.Sl_document.Add(sl_document);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = prd_brands.id }, prd_brands);
+            return CreatedAtRoute("DefaultApi", new { id = sl_document.id }, sl_document);
         }
 
-        // DELETE: api/prd_brands/5
-        [ResponseType(typeof(prd_brands))]
-        public IHttpActionResult Deleteprd_brands(int id)
+        // DELETE: api/Sl_document/5
+        [ResponseType(typeof(Sl_document))]
+        public IHttpActionResult DeleteSl_document(int id)
         {
-            prd_brands prd_brands = db.prd_brands.Find(id);
-            if (prd_brands == null)
+            Sl_document sl_document = db.Sl_document.Find(id);
+            if (sl_document == null)
             {
                 return NotFound();
             }
 
-            db.prd_brands.Remove(prd_brands);
+            db.Sl_document.Remove(sl_document);
             db.SaveChanges();
 
-            return Ok(prd_brands);
+            return Ok(sl_document);
         }
 
         protected override void Dispose(bool disposing)
@@ -112,9 +112,9 @@ namespace apiFacturacionPrb.Controllers
             base.Dispose(disposing);
         }
 
-        private bool prd_brandsExists(int id)
+        private bool Sl_documentExists(int id)
         {
-            return db.prd_brands.Count(e => e.id == id) > 0;
+            return db.Sl_document.Count(e => e.id == id) > 0;
         }
     }
 }

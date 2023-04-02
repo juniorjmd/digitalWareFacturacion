@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using apiFacturacionPrb.Models;
 
 namespace apiFacturacionPrb.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class prd_inventory_warehouseController : ApiController
     {
         private Model2 db = new Model2();

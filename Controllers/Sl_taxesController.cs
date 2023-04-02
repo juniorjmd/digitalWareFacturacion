@@ -14,44 +14,44 @@ using apiFacturacionPrb.Models;
 namespace apiFacturacionPrb.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class prd_brandsController : ApiController
+    public class Sl_taxesController : ApiController
     {
         private Model2 db = new Model2();
 
-        // GET: api/prd_brands
-        public IQueryable<prd_brands> Getprd_brands()
+        // GET: api/Sl_taxes
+        public IQueryable<Sl_taxes> GetSl_taxes()
         {
-            return db.prd_brands;
+            return db.Sl_taxes;
         }
 
-        // GET: api/prd_brands/5
-        [ResponseType(typeof(prd_brands))]
-        public IHttpActionResult Getprd_brands(int id)
+        // GET: api/Sl_taxes/5
+        [ResponseType(typeof(Sl_taxes))]
+        public IHttpActionResult GetSl_taxes(int id)
         {
-            prd_brands prd_brands = db.prd_brands.Find(id);
-            if (prd_brands == null)
+            Sl_taxes sl_taxes = db.Sl_taxes.Find(id);
+            if (sl_taxes == null)
             {
                 return NotFound();
             }
 
-            return Ok(prd_brands);
+            return Ok(sl_taxes);
         }
 
-        // PUT: api/prd_brands/5
+        // PUT: api/Sl_taxes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putprd_brands(int id, prd_brands prd_brands)
+        public IHttpActionResult PutSl_taxes(int id, Sl_taxes sl_taxes)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != prd_brands.id)
+            if (id != sl_taxes.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(prd_brands).State = EntityState.Modified;
+            db.Entry(sl_taxes).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace apiFacturacionPrb.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!prd_brandsExists(id))
+                if (!Sl_taxesExists(id))
                 {
                     return NotFound();
                 }
@@ -72,35 +72,35 @@ namespace apiFacturacionPrb.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/prd_brands
-        [ResponseType(typeof(prd_brands))]
-        public IHttpActionResult Postprd_brands(prd_brands prd_brands)
+        // POST: api/Sl_taxes
+        [ResponseType(typeof(Sl_taxes))]
+        public IHttpActionResult PostSl_taxes(Sl_taxes sl_taxes)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.prd_brands.Add(prd_brands);
+            db.Sl_taxes.Add(sl_taxes);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = prd_brands.id }, prd_brands);
+            return CreatedAtRoute("DefaultApi", new { id = sl_taxes.id }, sl_taxes);
         }
 
-        // DELETE: api/prd_brands/5
-        [ResponseType(typeof(prd_brands))]
-        public IHttpActionResult Deleteprd_brands(int id)
+        // DELETE: api/Sl_taxes/5
+        [ResponseType(typeof(Sl_taxes))]
+        public IHttpActionResult DeleteSl_taxes(int id)
         {
-            prd_brands prd_brands = db.prd_brands.Find(id);
-            if (prd_brands == null)
+            Sl_taxes sl_taxes = db.Sl_taxes.Find(id);
+            if (sl_taxes == null)
             {
                 return NotFound();
             }
 
-            db.prd_brands.Remove(prd_brands);
+            db.Sl_taxes.Remove(sl_taxes);
             db.SaveChanges();
 
-            return Ok(prd_brands);
+            return Ok(sl_taxes);
         }
 
         protected override void Dispose(bool disposing)
@@ -112,9 +112,9 @@ namespace apiFacturacionPrb.Controllers
             base.Dispose(disposing);
         }
 
-        private bool prd_brandsExists(int id)
+        private bool Sl_taxesExists(int id)
         {
-            return db.prd_brands.Count(e => e.id == id) > 0;
+            return db.Sl_taxes.Count(e => e.id == id) > 0;
         }
     }
 }

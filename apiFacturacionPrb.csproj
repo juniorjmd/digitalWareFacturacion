@@ -57,11 +57,17 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Cors, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Cors.5.2.9\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Cors.5.2.9\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -167,8 +173,14 @@
     <Compile Include="Controllers\Cl_typeIdController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\prd_brandsController.cs" />
+    <Compile Include="Controllers\prd_groupsController.cs" />
     <Compile Include="Controllers\prd_inventory_warehouseController.cs" />
     <Compile Include="Controllers\prd_productController.cs" />
+    <Compile Include="Controllers\Sl_discountsController.cs" />
+    <Compile Include="Controllers\Sl_documentController.cs" />
+    <Compile Include="Controllers\Sl_document_productsController.cs" />
+    <Compile Include="Controllers\Sl_document_StatesController.cs" />
+    <Compile Include="Controllers\Sl_taxesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -178,6 +190,7 @@
     <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\Model2.cs" />
     <Compile Include="Models\prd_brands.cs" />
+    <Compile Include="Models\prd_groups.cs" />
     <Compile Include="Models\prd_inventory_stock.cs" />
     <Compile Include="Models\prd_inventory_warehouse.cs" />
     <Compile Include="Models\prd_product.cs" />
