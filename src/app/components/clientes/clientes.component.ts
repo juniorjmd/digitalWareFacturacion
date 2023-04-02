@@ -10,7 +10,7 @@ import { ClientesService } from 'src/app/services/clientes.service';
 export class ClientesComponent {
   clientes: Cliente[] = [];
   constructor(private sCliente: ClientesService) {
-    this.getClientes();
+    this.getClientes()
   }
 
   getClientes() {
