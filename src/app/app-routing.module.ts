@@ -4,12 +4,14 @@ import { HomeComponent } from './components/home/home.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { FacturarComponent } from './components/facturar/facturar.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
+import { ProductsComponent } from './components/products/products.component';
 
 const routes: Routes = [
   { path : 'inicio' , component : InicioComponent},  
   { path : 'home' ,  component : HomeComponent , children:[
     { path : 'facturar' ,  component : FacturarComponent },
     { path : 'clientes' ,  component : ClientesComponent },
+    { path : 'products' ,  component : ProductsComponent },
     { path : '**' , pathMatch:'full' , redirectTo : 'facturar'}
   ] },
 { path : '**' , pathMatch:'full' , redirectTo : 'inicio'}];

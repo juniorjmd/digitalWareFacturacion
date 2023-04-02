@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/share/navbar/navbar.component';
 import { FacturarComponent } from './components/facturar/facturar.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ClientesComponent } from './components/clientes/clientes.component';
     InicioComponent,
     NavbarComponent,
     FacturarComponent,
-    ClientesComponent
+    ClientesComponent,
+    ProductsComponent
   ],
   imports: [
     FormsModule,
