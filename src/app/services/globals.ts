@@ -1,3 +1,3 @@
 export const global = {
-    url:'http://localhost:60000/api/'
+    url:'http://192.168.20.77/backFacturacionPrb/api/'
 }
