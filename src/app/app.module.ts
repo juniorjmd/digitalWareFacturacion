@@ -12,6 +12,9 @@ import { NavbarComponent } from './components/share/navbar/navbar.component';
 import { FacturarComponent } from './components/facturar/facturar.component';
 import { ClientesComponent } from './components/clientes/clientes.component';
 import { ProductsComponent } from './components/products/products.component';
+import { BrandsComponent } from './components/brands/brands.component';
+import { TaxesComponent } from './components/taxes/taxes.component';
+import { DiscountsComponent } from './components/discounts/discounts.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ProductsComponent } from './components/products/products.component';
     NavbarComponent,
     FacturarComponent,
     ClientesComponent,
-    ProductsComponent
+    ProductsComponent,
+    BrandsComponent,
+    TaxesComponent,
+    DiscountsComponent
   ],
   imports: [
     FormsModule,

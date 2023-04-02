@@ -1,1 +1,46 @@
-<p>clientes works!</p>
+<div class="container">
+    <h3 class="text-center">Clientes</h3>
+    <div class="row justify-content-center">
+        <div class="col-xl-9">
+            <form>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="clientId" class="form-label">ID</label>
+                        <input type="text" class="form-control" id="clientId" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="clientName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="clientName" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="clientLastName" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="clientLastName" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="typeId" class="form-label">Tipo</label>
+                        <select class="form-select" id="typeId">
+                            <option selected>Seleccione...</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Crear</button>
+            </form>
+        </div>
+    </div>
+    <hr class="border border-dark">
+    <div class="row">
+        <h3 class="text-start">Listado</h3>
+        <div class="col-sm-12 col-md-12 col-xl-12 mb-3">
+            <ul class="list-group">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li>
+            </ul>
+        </div>
+    </div>
+</div>

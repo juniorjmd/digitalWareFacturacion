@@ -1,0 +1,61 @@
+<div class="container">
+    <h3 class="text-center">Descuentos</h3>
+    <div class="row justify-content-center">
+        <div class="col-xl-9">
+            <form>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="discountName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="discountName" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="value" class="form-label">Valor</label>
+                        <input type="number" class="form-control" id="value" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="valueType" class="form-label">Tipo de valor</label>
+                        <input type="text" class="form-control" id="valueType" />
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="state" class="form-label">Estado</label>
+                        <select class="form-select" id="state">
+                            <option selected>Seleccione...</option>
+                            <option value="Activo">A</option>
+                            <option value="Inactivo">I</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="included" class="form-label">Incluido</label>
+                        <select class="form-select" id="included">
+                            <option selected>Seleccione...</option>
+                            <option value="Si">Sí</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="apply" class="form-label">Aplica</label>
+                        <select class="form-select" id="apply">
+                            <option selected>Seleccione...</option>
+                            <option value="S">S</option>
+                            <option value="N">N</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Crear</button>
+            </form>
+        </div>
+    </div>
+    <hr class="border border-dark">
+    <div class="row">
+        <h3 class="text-start">Listado</h3>
+        <div class="col-sm-12 col-md-12 col-xl-12 mb-3">
+            <ul class="list-group">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+                <li class="list-group-item">A fourth item</li>
+                <li class="list-group-item">And a fifth one</li>
+            </ul>
+        </div>
+    </div>
+</div>
