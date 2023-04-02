@@ -17,11 +17,9 @@ export class ClientesComponent {
     this.sCliente.getClientes().subscribe({
       next: (res) => {
         console.log(res);
-        this.clientes = res;
-      },
-      error: (err) => {
+      }, error: (err) => {
         console.error(err);
-      },
-    });
+      }
+    })
   }
 }
