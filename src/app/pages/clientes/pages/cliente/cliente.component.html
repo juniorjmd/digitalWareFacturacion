@@ -23,10 +23,10 @@
                 <dxi-column dataField="idNumber" caption="identificación">
                     <dxi-validation-rule type="required"></dxi-validation-rule>
                 </dxi-column>
-                <dxi-column dataField="typeId" caption="Tipo de identificación">
+                <dxi-column dataField="idTypeId" caption="Tipo de identificación">
                     <dxi-validation-rule type="required"></dxi-validation-rule>
                     <!-- provides actual values -->
-                    <dxo-lookup [dataSource]="TipoId" valueExpr="id" displayExpr="name">
+                    <dxo-lookup [dataSource]="TipoId" valueExpr="idTypeId" displayExpr="name">
                     </dxo-lookup>
                 </dxi-column>
 

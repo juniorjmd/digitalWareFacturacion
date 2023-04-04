@@ -20,7 +20,7 @@ export class BodegasComponent {
   constructor( private sInventario : InventarioService)
 {
   this.dataSource = new CustomStore({
-    key: 'id',
+    key: 'idBodega',
     load: () => this.sInventario.getBodegas() ,
     insert:  (values) =>  this.sInventario.postBodegas(values)  ,
     update: async (key, values) => {

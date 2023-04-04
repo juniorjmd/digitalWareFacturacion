@@ -52,13 +52,20 @@
                             "src/assets"
                         ],
                         "styles": [
+
                             "node_modules/devextreme/dist/css/dx.common.css",
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "src/themes/generated/theme.base.css",
                             "src/themes/generated/theme.additional.css",
                             "src/dx-styles.scss",
                             "src/styles.scss"
                         ],
-                        "scripts": []
+                        "scripts": [
+                            "node_modules/jquery/dist/jquery.min.js",
+                            "node_modules/@popperjs/core/dist/umd/popper.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
+                        ],
+                        "allowedCommonJsDependencies": ["sweetalert2"]
                     },
                     "configurations": {
                         "production": {
