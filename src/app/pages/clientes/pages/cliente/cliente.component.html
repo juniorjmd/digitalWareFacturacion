@@ -1,0 +1,36 @@
+<div class="container">
+    <h3 class="text-center">Clientes</h3>
+
+    <hr class="border border-dark">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-12 mb-3">
+            <dx-data-grid id="dataGrid" [dataSource]="dataSource" (onEditingStart)="onEditingStart($event)" keyExpr="id" [showBorders]="true">
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-paging [enabled]="true"></dxo-paging>
+                <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                </dxo-editing>
+                <dxo-popup title="clientes Info" [showTitle]="true" [width]="700" [height]="525">
+                </dxo-popup>
+                <dxi-column dataField="name" caption="Nomber">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column dataField="lastname" caption="Apellido">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column dataField="birthdate" caption="Fecha de nacimiento" dataType="date">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column dataField="idNumber" caption="identificación">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-column>
+                <dxi-column dataField="typeId" caption="Tipo de identificación">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                    <!-- provides actual values -->
+                    <dxo-lookup [dataSource]="TipoId" valueExpr="id" displayExpr="name">
+                    </dxo-lookup>
+                </dxi-column>
+
+            </dx-data-grid>
+        </div>
+    </div>
+</div>

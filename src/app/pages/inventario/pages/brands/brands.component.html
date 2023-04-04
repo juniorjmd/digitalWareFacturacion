@@ -1,0 +1,23 @@
+<h2 class="content-block">Marcas disponibles</h2>
+<div class="content-block">
+    <div class="dx-card responsive-paddings">
+        <dx-data-grid id="dataGrid" [dataSource]="dataSource" [showBorders]="true" (onEditingStart)="onEditingStart($event)" keyExpr="iDmarca" [showBorders]="true">
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-paging [enabled]="true"></dxo-paging>
+            <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+            </dxo-editing>
+            <dxo-popup title="clientes Info" [showTitle]="true" [width]="600" [height]="525">
+            </dxo-popup>
+            <dxi-column dataField="iDmarca" dataType="number" caption="codigo" [allowEditing]="false">
+            </dxi-column>
+            <dxi-column dataField="nombre" caption="Nombre">
+                <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+            <dxi-column dataField="descripcon" caption="descripción">
+                <dxi-validation-rule type="required"></dxi-validation-rule>
+            </dxi-column>
+
+
+        </dx-data-grid>
+    </div>
+</div>
