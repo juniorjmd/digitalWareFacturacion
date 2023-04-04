@@ -3,7 +3,6 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-<<<<<<< HEAD
         "facturacionApp2": {
             "projectType": "application",
             "schematics": {
@@ -33,11 +32,6 @@
                     "skipTests": true
                 }
             },
-=======
-        "facturacion_prb": {
-            "projectType": "application",
-            "schematics": {},
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
             "root": "",
             "sourceRoot": "src",
             "prefix": "app",
@@ -45,62 +39,33 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-<<<<<<< HEAD
-                        "outputPath": "dist/facturacion-app2",
-=======
-                        "outputPath": "dist/facturacion_prb",
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
+                        "outputPath": "dist/facturacionApp2",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": [
                             "zone.js"
                         ],
                         "tsConfig": "tsconfig.app.json",
-<<<<<<< HEAD
                         "inlineStyleLanguage": "scss",
-=======
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
                         "assets": [
                             "src/favicon.ico",
                             "src/assets"
                         ],
                         "styles": [
-                            "node_modules/sweetalert2/src/sweetalert2.scss",
-                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
-<<<<<<< HEAD
                             "node_modules/devextreme/dist/css/dx.common.css",
                             "src/themes/generated/theme.base.css",
                             "src/themes/generated/theme.additional.css",
                             "src/dx-styles.scss",
                             "src/styles.scss"
-=======
-                            "src/styles.css"
-
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
                         ],
-                        "scripts": [
-                            "node_modules/jquery/dist/jquery.min.js",
-                            "node_modules/@popperjs/core/dist/umd/popper.min.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
-<<<<<<< HEAD
-=======
-                        ],
-                        "allowedCommonJsDependencies": [
-                            "sweetalert2"
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
-                        ]
+                        "scripts": []
                     },
                     "configurations": {
                         "production": {
                             "budgets": [{
                                     "type": "initial",
-<<<<<<< HEAD
                                     "maximumWarning": "4mb",
                                     "maximumError": "7mb"
-=======
-                                    "maximumWarning": "500kb",
-                                    "maximumError": "1mb"
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
                                 },
                                 {
                                     "type": "anyComponentStyle",
@@ -125,17 +90,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-<<<<<<< HEAD
                             "browserTarget": "facturacionApp2:build:production"
                         },
                         "development": {
                             "browserTarget": "facturacionApp2:build:development"
-=======
-                            "browserTarget": "facturacion_prb:build:production"
-                        },
-                        "development": {
-                            "browserTarget": "facturacion_prb:build:development"
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
                         }
                     },
                     "defaultConfiguration": "development"
@@ -143,11 +101,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-<<<<<<< HEAD
                         "browserTarget": "facturacionApp2:build"
-=======
-                        "browserTarget": "facturacion_prb:build"
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
                     }
                 },
                 "test": {
@@ -158,40 +112,21 @@
                             "zone.js/testing"
                         ],
                         "tsConfig": "tsconfig.spec.json",
-<<<<<<< HEAD
                         "inlineStyleLanguage": "scss",
-=======
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
                         "assets": [
                             "src/favicon.ico",
                             "src/assets"
                         ],
                         "styles": [
-<<<<<<< HEAD
                             "src/styles.scss"
                         ],
                         "scripts": []
-=======
-                            "node_modules/sweetalert2/src/sweetalert2.scss",
-                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "src/styles.css"
-                        ],
-                        "scripts": [
-                            "node_modules/jquery/dist/jquery.min.js",
-                            "node_modules/@popperjs/core/dist/umd/popper.min.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.min.js"
-                        ]
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
                     }
                 }
             }
         }
     },
     "cli": {
-<<<<<<< HEAD
-        "analytics": "9fa5b9a5-aeb8-4bde-91aa-e9c6a08823e9"
-=======
         "analytics": false
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
     }
 }
