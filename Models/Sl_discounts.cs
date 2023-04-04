@@ -11,7 +11,7 @@ namespace apiFacturacionPrb.Models
         public int id { get; set; }
 
         [StringLength(1)]
-        public string apricaA { get; set; }
+        public string aplicaA { get; set; }
 
         [StringLength(50)]
         public string nombre { get; set; }

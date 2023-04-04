@@ -90,7 +90,7 @@ namespace apiFacturacionPrb.Models
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<Sl_discounts>()
-                .Property(e => e.apricaA)
+                .Property(e => e.aplicaA)
                 .IsFixedLength();
 
             modelBuilder.Entity<Sl_discounts>()
@@ -159,7 +159,7 @@ namespace apiFacturacionPrb.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Sl_taxes>()
-                .Property(e => e.apricaA)
+                .Property(e => e.aplicaA)
                 .IsFixedLength();
 
             modelBuilder.Entity<Sl_taxes>()
@@ -182,6 +182,12 @@ namespace apiFacturacionPrb.Models
             modelBuilder.Entity<Sl_taxes>()
                 .Property(e => e.estado)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Sl_taxes>()
+               .Property(e => e.esVariable)
+               .IsFixedLength();
+
+
         }
     }
 }
