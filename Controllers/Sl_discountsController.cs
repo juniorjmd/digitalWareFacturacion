@@ -16,7 +16,7 @@ namespace apiFacturacionPrb.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class Sl_discountsController : ApiController
     {
-        private Model2 db = new Model2();
+        private Model1 db = new Model1();
 
         // GET: api/Sl_discounts
         public IQueryable<Sl_discounts> GetSl_discounts()
@@ -46,7 +46,7 @@ namespace apiFacturacionPrb.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != sl_discounts.id)
+            if (id != sl_discounts.iDdescuento)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace apiFacturacionPrb.Controllers
             db.Sl_discounts.Add(sl_discounts);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = sl_discounts.id }, sl_discounts);
+            return CreatedAtRoute("DefaultApi", new { id = sl_discounts.iDdescuento }, sl_discounts);
         }
 
         // DELETE: api/Sl_discounts/5
@@ -114,7 +114,7 @@ namespace apiFacturacionPrb.Controllers
 
         private bool Sl_discountsExists(int id)
         {
-            return db.Sl_discounts.Count(e => e.id == id) > 0;
+            return db.Sl_discounts.Count(e => e.iDdescuento == id) > 0;
         }
     }
 }

@@ -8,7 +8,15 @@ namespace apiFacturacionPrb.Models
 
     public partial class Sl_taxes
     {
-        public int id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Sl_taxes()
+        {
+            prd_product = new HashSet<prd_product>();
+            Sl_document_taxes = new HashSet<Sl_document_taxes>();
+        }
+
+        [Key]
+        public int iDimpuesto { get; set; }
 
         [StringLength(1)]
         public string aplicaA { get; set; }
@@ -25,10 +33,15 @@ namespace apiFacturacionPrb.Models
         public string esIncluido { get; set; }
 
         [StringLength(1)]
-        public string esVariable { get; set; }
-
-        [StringLength(1)]
         public string estado { get; set; }
 
+        [StringLength(1)]
+        public string esVariable { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<prd_product> prd_product { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sl_document_taxes> Sl_document_taxes { get; set; }
     }
 }

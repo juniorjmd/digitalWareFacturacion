@@ -16,7 +16,7 @@ namespace apiFacturacionPrb.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class prd_inventory_warehouseController : ApiController
     {
-        private Model2 db = new Model2();
+        private Model1 db = new Model1();
 
         // GET: api/prd_inventory_warehouse
         public IQueryable<prd_inventory_warehouse> Getprd_inventory_warehouse()
@@ -46,7 +46,7 @@ namespace apiFacturacionPrb.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != prd_inventory_warehouse.id)
+            if (id != prd_inventory_warehouse.idBodega)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace apiFacturacionPrb.Controllers
             db.prd_inventory_warehouse.Add(prd_inventory_warehouse);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = prd_inventory_warehouse.id }, prd_inventory_warehouse);
+            return CreatedAtRoute("DefaultApi", new { id = prd_inventory_warehouse.idBodega }, prd_inventory_warehouse);
         }
 
         // DELETE: api/prd_inventory_warehouse/5
@@ -114,7 +114,7 @@ namespace apiFacturacionPrb.Controllers
 
         private bool prd_inventory_warehouseExists(int id)
         {
-            return db.prd_inventory_warehouse.Count(e => e.id == id) > 0;
+            return db.prd_inventory_warehouse.Count(e => e.idBodega == id) > 0;
         }
     }
 }

@@ -8,7 +8,14 @@ namespace apiFacturacionPrb.Models
 
     public partial class prd_brands
     {
-        public int id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public prd_brands()
+        {
+            prd_product = new HashSet<prd_product>();
+        }
+
+        [Key]
+        public int iDmarca { get; set; }
 
         [Required]
         [StringLength(150)]
@@ -17,5 +24,8 @@ namespace apiFacturacionPrb.Models
         [Column(TypeName = "text")]
         [Required]
         public string descripcion { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<prd_product> prd_product { get; set; }
     }
 }

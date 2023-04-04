@@ -16,7 +16,7 @@ namespace apiFacturacionPrb.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class prd_groupsController : ApiController
     {
-        private Model2 db = new Model2();
+        private Model1 db = new Model1();
 
         // GET: api/prd_groups
         public IQueryable<prd_groups> Getprd_groups()
@@ -46,7 +46,7 @@ namespace apiFacturacionPrb.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != prd_groups.id)
+            if (id != prd_groups.iDcategoria)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace apiFacturacionPrb.Controllers
             db.prd_groups.Add(prd_groups);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = prd_groups.id }, prd_groups);
+            return CreatedAtRoute("DefaultApi", new { id = prd_groups.iDcategoria }, prd_groups);
         }
 
         // DELETE: api/prd_groups/5
@@ -114,7 +114,7 @@ namespace apiFacturacionPrb.Controllers
 
         private bool prd_groupsExists(int id)
         {
-            return db.prd_groups.Count(e => e.id == id) > 0;
+            return db.prd_groups.Count(e => e.iDcategoria == id) > 0;
         }
     }
 }

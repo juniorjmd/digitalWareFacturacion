@@ -16,7 +16,7 @@ namespace apiFacturacionPrb.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class prd_productController : ApiController
     {
-        private Model2 db = new Model2();
+        private Model1 db = new Model1();
 
         // GET: api/prd_product
         public IQueryable<prd_product> Getprd_product()
@@ -46,7 +46,7 @@ namespace apiFacturacionPrb.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != prd_product.id)
+            if (id != prd_product.iDproducto)
             {
                 return BadRequest();
             }
@@ -89,7 +89,7 @@ namespace apiFacturacionPrb.Controllers
             }
             catch (DbUpdateException)
             {
-                if (prd_productExists(prd_product.id))
+                if (prd_productExists(prd_product.iDproducto))
                 {
                     return Conflict();
                 }
@@ -99,7 +99,7 @@ namespace apiFacturacionPrb.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = prd_product.id }, prd_product);
+            return CreatedAtRoute("DefaultApi", new { id = prd_product.iDproducto }, prd_product);
         }
 
         // DELETE: api/prd_product/5
@@ -129,7 +129,7 @@ namespace apiFacturacionPrb.Controllers
 
         private bool prd_productExists(int id)
         {
-            return db.prd_product.Count(e => e.id == id) > 0;
+            return db.prd_product.Count(e => e.iDproducto == id) > 0;
         }
     }
 }

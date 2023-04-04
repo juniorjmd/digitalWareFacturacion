@@ -14,24 +14,21 @@ using apiFacturacionPrb.Models;
 namespace apiFacturacionPrb.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-
     public class Cl_customerController : ApiController
     {
         private Model1 db = new Model1();
 
         // GET: api/Cl_customer
-        public IQueryable<Vw_customer> GetCl_customer()
+        public IQueryable<Cl_customer> GetCl_customer()
         {
-            return db.Vw_customer;
+            return db.Cl_customer;
         }
 
         // GET: api/Cl_customer/5
-        [ResponseType(typeof(Vw_customer))]
+        [ResponseType(typeof(Cl_customer))]
         public IHttpActionResult GetCl_customer(int id)
         {
-            string query = "select * from Vw_customer where id = " + id.ToString();
-            Vw_customer cl_customer = db.Vw_customer.SqlQuery(query).FirstOrDefault<Vw_customer>();
-               
+            Cl_customer cl_customer = db.Cl_customer.Find(id);
             if (cl_customer == null)
             {
                 return NotFound();
@@ -49,7 +46,7 @@ namespace apiFacturacionPrb.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != cl_customer.id)
+            if (id != cl_customer.idCliente)
             {
                 return BadRequest();
             }
@@ -72,8 +69,7 @@ namespace apiFacturacionPrb.Controllers
                 }
             }
 
-            // return StatusCode(HttpStatusCode.NoContent);
-            return CreatedAtRoute("DefaultApi", new { id = cl_customer.id }, cl_customer);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/Cl_customer
@@ -88,7 +84,7 @@ namespace apiFacturacionPrb.Controllers
             db.Cl_customer.Add(cl_customer);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = cl_customer.id }, cl_customer);
+            return CreatedAtRoute("DefaultApi", new { id = cl_customer.idCliente }, cl_customer);
         }
 
         // DELETE: api/Cl_customer/5
@@ -118,7 +114,7 @@ namespace apiFacturacionPrb.Controllers
 
         private bool Cl_customerExists(int id)
         {
-            return db.Cl_customer.Count(e => e.id == id) > 0;
+            return db.Cl_customer.Count(e => e.idCliente == id) > 0;
         }
     }
 }

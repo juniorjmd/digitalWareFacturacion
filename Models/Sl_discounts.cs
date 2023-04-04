@@ -8,7 +8,14 @@ namespace apiFacturacionPrb.Models
 
     public partial class Sl_discounts
     {
-        public int id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Sl_discounts()
+        {
+            prd_product = new HashSet<prd_product>();
+        }
+
+        [Key]
+        public int iDdescuento { get; set; }
 
         [StringLength(1)]
         public string aplicaA { get; set; }
@@ -26,5 +33,8 @@ namespace apiFacturacionPrb.Models
 
         [StringLength(1)]
         public string estado { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<prd_product> prd_product { get; set; }
     }
 }

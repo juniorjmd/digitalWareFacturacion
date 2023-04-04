@@ -16,7 +16,7 @@ namespace apiFacturacionPrb.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class prd_brandsController : ApiController
     {
-        private Model2 db = new Model2();
+        private Model1 db = new Model1();
 
         // GET: api/prd_brands
         public IQueryable<prd_brands> Getprd_brands()
@@ -46,7 +46,7 @@ namespace apiFacturacionPrb.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != prd_brands.id)
+            if (id != prd_brands.iDmarca)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace apiFacturacionPrb.Controllers
             db.prd_brands.Add(prd_brands);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = prd_brands.id }, prd_brands);
+            return CreatedAtRoute("DefaultApi", new { id = prd_brands.iDmarca }, prd_brands);
         }
 
         // DELETE: api/prd_brands/5
@@ -114,7 +114,7 @@ namespace apiFacturacionPrb.Controllers
 
         private bool prd_brandsExists(int id)
         {
-            return db.prd_brands.Count(e => e.id == id) > 0;
+            return db.prd_brands.Count(e => e.iDmarca == id) > 0;
         }
     }
 }

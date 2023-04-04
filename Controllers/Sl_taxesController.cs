@@ -16,7 +16,7 @@ namespace apiFacturacionPrb.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class Sl_taxesController : ApiController
     {
-        private Model2 db = new Model2();
+        private Model1 db = new Model1();
 
         // GET: api/Sl_taxes
         public IQueryable<Sl_taxes> GetSl_taxes()
@@ -46,7 +46,7 @@ namespace apiFacturacionPrb.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != sl_taxes.id)
+            if (id != sl_taxes.iDimpuesto)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace apiFacturacionPrb.Controllers
             db.Sl_taxes.Add(sl_taxes);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = sl_taxes.id }, sl_taxes);
+            return CreatedAtRoute("DefaultApi", new { id = sl_taxes.iDimpuesto }, sl_taxes);
         }
 
         // DELETE: api/Sl_taxes/5
@@ -114,7 +114,7 @@ namespace apiFacturacionPrb.Controllers
 
         private bool Sl_taxesExists(int id)
         {
-            return db.Sl_taxes.Count(e => e.id == id) > 0;
+            return db.Sl_taxes.Count(e => e.iDimpuesto == id) > 0;
         }
     }
 }

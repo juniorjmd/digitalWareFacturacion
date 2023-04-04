@@ -8,12 +8,22 @@ namespace apiFacturacionPrb.Models
 
     public partial class Sl_document_States
     {
-        public int id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Sl_document_States()
+        {
+            Sl_document = new HashSet<Sl_document>();
+        }
+
+        [Key]
+        public int idEstado { get; set; }
 
         [StringLength(10)]
         public string nombre { get; set; }
 
         [StringLength(150)]
         public string descripcion { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sl_document> Sl_document { get; set; }
     }
 }

@@ -46,7 +46,7 @@ namespace apiFacturacionPrb.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != cl_typeId.id)
+            if (id != cl_typeId.idTypeId)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace apiFacturacionPrb.Controllers
             db.Cl_typeId.Add(cl_typeId);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = cl_typeId.id }, cl_typeId);
+            return CreatedAtRoute("DefaultApi", new { id = cl_typeId.idTypeId }, cl_typeId);
         }
 
         // DELETE: api/Cl_typeId/5
@@ -114,7 +114,7 @@ namespace apiFacturacionPrb.Controllers
 
         private bool Cl_typeIdExists(int id)
         {
-            return db.Cl_typeId.Count(e => e.id == id) > 0;
+            return db.Cl_typeId.Count(e => e.idTypeId == id) > 0;
         }
     }
 }

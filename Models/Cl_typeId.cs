@@ -8,7 +8,8 @@ namespace apiFacturacionPrb.Models
 
     public partial class Cl_typeId
     {
-        public int id { get; set; }
+        [Key]
+        public int idTypeId { get; set; }
 
         [Required]
         [StringLength(10)]

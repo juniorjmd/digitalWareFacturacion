@@ -8,7 +8,14 @@ namespace apiFacturacionPrb.Models
 
     public partial class Cl_customer
     {
-        public int id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Cl_customer()
+        {
+            Sl_document = new HashSet<Sl_document>();
+        }
+
+        [Key]
+        public int idCliente { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -25,6 +32,9 @@ namespace apiFacturacionPrb.Models
         [StringLength(50)]
         public string idNumber { get; set; }
 
-        public int typeId { get; set; }
+        public int idTypeId { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sl_document> Sl_document { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace apiFacturacionPrb.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class Sl_documentController : ApiController
     {
-        private Model2 db = new Model2();
+        private Model1 db = new Model1();
 
         // GET: api/Sl_document
         public IQueryable<Sl_document> GetSl_document()
@@ -46,7 +46,7 @@ namespace apiFacturacionPrb.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != sl_document.id)
+            if (id != sl_document.idDocumento)
             {
                 return BadRequest();
             }
@@ -84,7 +84,7 @@ namespace apiFacturacionPrb.Controllers
             db.Sl_document.Add(sl_document);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = sl_document.id }, sl_document);
+            return CreatedAtRoute("DefaultApi", new { id = sl_document.idDocumento }, sl_document);
         }
 
         // DELETE: api/Sl_document/5
@@ -114,7 +114,7 @@ namespace apiFacturacionPrb.Controllers
 
         private bool Sl_documentExists(int id)
         {
-            return db.Sl_document.Count(e => e.id == id) > 0;
+            return db.Sl_document.Count(e => e.idDocumento == id) > 0;
         }
     }
 }

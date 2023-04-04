@@ -8,9 +8,10 @@ namespace apiFacturacionPrb.Models
 
     public partial class Sl_document_products
     {
-        public int id { get; set; }
+        [Key]
+        public int idDocProduct { get; set; }
 
-        public int idProducto { get; set; }
+        public int iDproducto { get; set; }
 
         [Column(TypeName = "numeric")]
         public decimal cantidad { get; set; }
@@ -28,5 +29,11 @@ namespace apiFacturacionPrb.Models
         [Column(TypeName = "numeric")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal? TotalFinal { get; set; }
+
+        public int IdDocumento { get; set; }
+
+        public virtual prd_product prd_product { get; set; }
+
+        public virtual Sl_document Sl_document { get; set; }
     }
 }
