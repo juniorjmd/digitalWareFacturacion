@@ -10,6 +10,10 @@
 /node_modules
 npm-debug.log
 yarn-error.log
+<<<<<<< HEAD
+=======
+package-lock.json
+>>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
 
 # IDEs and editors
 .idea/

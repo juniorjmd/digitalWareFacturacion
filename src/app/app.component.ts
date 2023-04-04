@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, HostBinding } from '@angular/core';
 import { AuthService, ScreenService, AppInfoService } from './shared/services';
 
@@ -16,4 +17,15 @@ export class AppComponent  {
   isAuthenticated() {
     return this.authService.loggedIn;
   }
+=======
+import * as $ from 'jquery';
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'facturacion_prb';
+>>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
 }

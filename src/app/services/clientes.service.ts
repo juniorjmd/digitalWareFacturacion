@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { global } from '../globals';
@@ -5,15 +6,26 @@ import { Cliente, TipoId } from '../interfaces/cliente';
 
 import { lastValueFrom } from 'rxjs';
 import { formatDate } from 'devextreme/localization';
+=======
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Cliente } from '../interfaces/cliente';
+import { global } from './globals';
+>>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientesService {
+<<<<<<< HEAD
   requests: string[] = [];
   URL = global.url + 'Cl_customer/';
   URLTI = global.url + 'Cl_typeId/';
   headers = new HttpHeaders().set('Content-Type' , 'application/json');
+=======
+  URL = global.url + 'Cl_customer/';
+  headers = new HttpHeaders().set('Content-Type' , 'application/x-www-form-urlencoded');
+>>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
   optHeader =  {headers : this.headers } ;
 
   constructor(private http: HttpClient) { 
@@ -22,6 +34,7 @@ export class ClientesService {
 
 
   getClientes(){
+<<<<<<< HEAD
     console.log(`${this.URL}` , this.optHeader);
     
    let result =   this.http.get<Cliente[]>( `${this.URL}` , this.optHeader);
@@ -86,4 +99,10 @@ getTipIdClientes(){
 return this.http.get<TipoId[]>( `${this.URLTI}` , this.optHeader);
 
 }
+=======
+      
+    return this.http.get<Cliente[]>( `${this.URL}` , this.optHeader);
+ 
+  }
+>>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
 }

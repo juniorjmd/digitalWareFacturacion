@@ -1,13 +1,21 @@
+<<<<<<< HEAD
+=======
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+>>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
+<<<<<<< HEAD
     "types": [],
     "paths": {
       "jszip": [
         "node_modules/jszip/dist/jszip.min.js"
       ]
     }
+=======
+    "types": []
+>>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
   },
   "files": [
     "src/main.ts"
