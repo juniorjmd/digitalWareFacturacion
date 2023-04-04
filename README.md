@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # FacturacionApp2
-=======
-# FacturacionPrb
->>>>>>> 8ed109d526751ee2a14d8ac81db21e87d531951c
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
 
