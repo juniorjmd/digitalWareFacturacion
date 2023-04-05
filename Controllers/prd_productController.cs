@@ -19,16 +19,16 @@ namespace apiFacturacionPrb.Controllers
         private Model1 db = new Model1();
 
         // GET: api/prd_product
-        public IQueryable<prd_product> Getprd_product()
+        public IQueryable<V_prd_product> Getprd_product()
         {
-            return db.prd_product;
+            return db.V_prd_product;
         }
 
         // GET: api/prd_product/5
-        [ResponseType(typeof(prd_product))]
+        [ResponseType(typeof(V_prd_product))]
         public IHttpActionResult Getprd_product(int id)
         {
-            prd_product prd_product = db.prd_product.Find(id);
+            V_prd_product prd_product = db.V_prd_product.Find(id);
             if (prd_product == null)
             {
                 return NotFound();
@@ -82,22 +82,7 @@ namespace apiFacturacionPrb.Controllers
             }
 
             db.prd_product.Add(prd_product);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (prd_productExists(prd_product.iDproducto))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = prd_product.iDproducto }, prd_product);
         }

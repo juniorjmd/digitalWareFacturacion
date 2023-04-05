@@ -181,15 +181,24 @@
     <Compile Include="Controllers\Sl_discountsController.cs" />
     <Compile Include="Controllers\Sl_documentController.cs" />
     <Compile Include="Controllers\Sl_document_productsController.cs" />
+    <Compile Include="Controllers\Sl_document_StatesController.cs" />
     <Compile Include="Controllers\Sl_document_taxesController.cs" />
     <Compile Include="Controllers\Sl_taxesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\V_prd_brandsController.cs" />
+    <Compile Include="Controllers\V_prd_groupsController.cs" />
+    <Compile Include="Controllers\V_prd_inventory_stockController.cs" />
+    <Compile Include="Controllers\V_prd_inventory_warehouseController.cs" />
+    <Compile Include="Controllers\V_prd_productController.cs" />
+    <Compile Include="Controllers\V_Sl_discountsController.cs" />
+    <Compile Include="Controllers\V_sl_taxesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Cl_customer.cs" />
     <Compile Include="Models\Cl_typeId.cs" />
     <Compile Include="Models\Model1.cs" />
+    <Compile Include="Models\Model2.cs" />
     <Compile Include="Models\prd_brands.cs" />
     <Compile Include="Models\prd_groups.cs" />
     <Compile Include="Models\prd_inventory_stock.cs" />
@@ -202,6 +211,13 @@
     <Compile Include="Models\Sl_document_taxes.cs" />
     <Compile Include="Models\Sl_taxes.cs" />
     <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Models\V_prd_brands.cs" />
+    <Compile Include="Models\V_prd_groups.cs" />
+    <Compile Include="Models\V_prd_inventory_stock.cs" />
+    <Compile Include="Models\V_prd_inventory_warehouse.cs" />
+    <Compile Include="Models\V_prd_product.cs" />
+    <Compile Include="Models\V_Sl_discounts.cs" />
+    <Compile Include="Models\V_sl_taxes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

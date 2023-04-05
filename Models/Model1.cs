@@ -26,6 +26,11 @@ namespace apiFacturacionPrb.Models
         public virtual DbSet<Sl_document_taxes> Sl_document_taxes { get; set; }
         public virtual DbSet<Sl_taxes> Sl_taxes { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<V_prd_brands> V_prd_brands { get; set; }
+        public virtual DbSet<V_prd_groups> V_prd_groups { get; set; }
+        public virtual DbSet<V_prd_inventory_warehouse> V_prd_inventory_warehouse { get; set; }
+        public virtual DbSet<V_prd_product> V_prd_product { get; set; }
+        public virtual DbSet<V_Sl_discounts> V_Sl_discounts { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -69,11 +74,6 @@ namespace apiFacturacionPrb.Models
             modelBuilder.Entity<prd_groups>()
                 .Property(e => e.descripcion)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<prd_groups>()
-                .HasMany(e => e.prd_product)
-                .WithRequired(e => e.prd_groups)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<prd_inventory_stock>()
                 .Property(e => e.cntInicial)
@@ -122,6 +122,14 @@ namespace apiFacturacionPrb.Models
 
             modelBuilder.Entity<prd_product>()
                 .Property(e => e.nombre2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<prd_product>()
+                .Property(e => e.usuarioCreacion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<prd_product>()
+                .Property(e => e.usuarioEdicion)
                 .IsUnicode(false);
 
             modelBuilder.Entity<prd_product>()
@@ -278,6 +286,83 @@ namespace apiFacturacionPrb.Models
                 .HasMany(e => e.Sl_document_taxes)
                 .WithRequired(e => e.Sl_taxes)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<V_prd_brands>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_brands>()
+                .Property(e => e.descripcion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_groups>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_groups>()
+                .Property(e => e.descripcion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_inventory_warehouse>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_inventory_warehouse>()
+                .Property(e => e.descripcion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_product>()
+                .Property(e => e.codigo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_product>()
+                .Property(e => e.codigoBarras)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_product>()
+                .Property(e => e.nombre1)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_product>()
+                .Property(e => e.nombre2)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_product>()
+                .Property(e => e.usuarioCreacion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_product>()
+                .Property(e => e.usuarioEdicion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_prd_product>()
+                .Property(e => e.precio)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<V_Sl_discounts>()
+                .Property(e => e.aplicaA)
+                .IsFixedLength();
+
+            modelBuilder.Entity<V_Sl_discounts>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_Sl_discounts>()
+                .Property(e => e.tipoValor)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<V_Sl_discounts>()
+                .Property(e => e.valor)
+                .HasPrecision(16, 2);
+
+            modelBuilder.Entity<V_Sl_discounts>()
+                .Property(e => e.esIncluido)
+                .IsFixedLength();
+
+            modelBuilder.Entity<V_Sl_discounts>()
+                .Property(e => e.estado)
+                .IsFixedLength();
         }
     }
 }

@@ -6,27 +6,24 @@ namespace apiFacturacionPrb.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class prd_product
+    public partial class V_prd_product
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public prd_product()
-        {
-            prd_inventory_stock = new HashSet<prd_inventory_stock>();
-            Sl_document_products = new HashSet<Sl_document_products>();
-        }
-
         [Key]
+        [Column(Order = 0)]
         public int iDproducto { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 1)]
         [StringLength(50)]
         public string codigo { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 2)]
         [StringLength(150)]
         public string codigoBarras { get; set; }
 
-        [Required]
+        [Key]
+        [Column(Order = 3)]
         [StringLength(100)]
         public string nombre1 { get; set; }
 
@@ -35,6 +32,9 @@ namespace apiFacturacionPrb.Models
 
         public int? iDcategoria { get; set; }
 
+        [Key]
+        [Column(Order = 4)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int iDmarca { get; set; }
 
         public DateTimeOffset? fechaCreacion { get; set; }
@@ -48,25 +48,15 @@ namespace apiFacturacionPrb.Models
         [StringLength(100)]
         public string usuarioEdicion { get; set; }
 
-        [Column(TypeName = "money")]
+        [Key]
+        [Column(Order = 5, TypeName = "money")]
         public decimal precio { get; set; }
 
+        [Key]
+        [Column(Order = 6)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int iDimpuesto { get; set; }
 
         public int? iDdescuento { get; set; }
-
-        public virtual prd_brands prd_brands { get; set; }
-
-        public virtual prd_groups prd_groups { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<prd_inventory_stock> prd_inventory_stock { get; set; }
-
-        public virtual Sl_discounts Sl_discounts { get; set; }
-
-        public virtual Sl_taxes Sl_taxes { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sl_document_products> Sl_document_products { get; set; }
     }
 }
