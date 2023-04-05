@@ -6,6 +6,7 @@ import { NewProductoComponent } from './pages/new-producto/new-producto.componen
 import { BrandsComponent } from './pages/brands/brands.component';
 import { TaxesComponent } from './pages/taxes/taxes.component';
 import { DiscountsComponent } from './pages/discounts/discounts.component';
+import { CategoriasComponent } from './pages/categorias/categorias.component';
 
 const rutas: Routes = [
   {
@@ -15,6 +16,7 @@ const rutas: Routes = [
       { path: 'producto', component: NewProductoComponent },
       { path: 'bodegas', component: BodegasComponent } ,
       { path: 'marcas', component: BrandsComponent } ,
+      { path: 'categorias', component: CategoriasComponent } ,
       { path: 'impuestos', component: TaxesComponent } ,
       { path: 'descuentos', component: DiscountsComponent } ,
       { path: '**', redirectTo: 'listado' }

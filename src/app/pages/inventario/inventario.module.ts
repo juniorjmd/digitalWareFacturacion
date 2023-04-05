@@ -9,6 +9,8 @@ import { BrandsComponent } from './pages/brands/brands.component';
 import { DiscountsComponent } from './pages/discounts/discounts.component';
 import { TaxesComponent } from './pages/taxes/taxes.component';
 import { DxButtonModule, DxDataGridModule } from 'devextreme-angular';
+import { CategoriasComponent } from './pages/categorias/categorias.component';
+import { ExistenciasComponent } from './pages/existencias/existencias.component';
 
 
 
@@ -21,7 +23,9 @@ import { DxButtonModule, DxDataGridModule } from 'devextreme-angular';
     NewProductoComponent,
     BrandsComponent,
     DiscountsComponent,
-    TaxesComponent
+    TaxesComponent,
+    CategoriasComponent,
+    ExistenciasComponent
   ],
   imports: [
     DxDataGridModule,

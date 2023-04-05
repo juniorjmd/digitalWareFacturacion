@@ -1,5 +1,5 @@
 export interface Bodega {
-    'id' ?: number,
+    'idBodega' ?: number,
     'nombre' : string,
     'descripcion' : string
 }
