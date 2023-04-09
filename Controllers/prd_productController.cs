@@ -53,6 +53,14 @@ namespace apiFacturacionPrb.Controllers
 
             db.Entry(prd_product).State = EntityState.Modified;
 
+            if (!prd_codigoExists(id,prd_product.codigo))
+            {
+                throw new DbUpdateConcurrencyException("el codigo a insertar ya existe en la base de datos") ;
+            }
+            if (!prd_codigoBarraExists(id,prd_product.codigoBarras))
+            {
+                throw new DbUpdateConcurrencyException("el codigo a insertar ya existe en la base de datos") ;
+            }
             try
             {
                 db.SaveChanges();
@@ -80,7 +88,14 @@ namespace apiFacturacionPrb.Controllers
             {
                 return BadRequest(ModelState);
             }
+            if (prd_codigoNewExists(prd_product.codigo)) {
+                throw new Exception("El codigo a insertar ya existe en la base de datos");
+            }
 
+             if (prd_codigoBarraNewExists(prd_product.codigoBarras))
+            {
+                throw new Exception("El codigo a insertar ya existe en la base de datos");
+            } 
             db.prd_product.Add(prd_product);
             db.SaveChanges();
 
@@ -115,6 +130,30 @@ namespace apiFacturacionPrb.Controllers
         private bool prd_productExists(int id)
         {
             return db.prd_product.Count(e => e.iDproducto == id) > 0;
+        }
+        private bool prd_codigoExists(int idProducto, string codigo)
+        {
+            IQueryable<prd_product> prd_product = from datos in db.prd_product
+                where datos.iDproducto != idProducto
+                select datos;
+            return prd_product.Count( e => e.codigo == codigo) > 0;
+        }
+        private bool prd_codigoNewExists(  string codigo)
+        {
+            IQueryable<prd_product> prd_product = db.prd_product;
+            return prd_product.Count(e => e.codigo == codigo) > 0;
+        }
+        private bool prd_codigoBarraExists(int idProducto, string codigo)
+        {
+            IQueryable<prd_product> prd_product = from datos in db.prd_product
+                                                  where datos.iDproducto != idProducto
+                                                  select datos;
+            return prd_product.Count(e => e.codigoBarras == codigo) > 0;
+        }
+        private bool prd_codigoBarraNewExists(string codigo)
+        {
+            IQueryable<prd_product> prd_product = db.prd_product;
+            return prd_product.Count(e => e.codigoBarras == codigo) > 0;
         }
     }
 }

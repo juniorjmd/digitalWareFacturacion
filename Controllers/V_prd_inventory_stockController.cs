@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using apiFacturacionPrb.Models;
 
 namespace apiFacturacionPrb.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class V_prd_inventory_stockController : ApiController
     {
         private Model2 db = new Model2();
@@ -37,26 +39,26 @@ namespace apiFacturacionPrb.Controllers
 
         // GET: api/ExistenciasPorProducto
         [HttpGet]
-        [Route("api/ExistenciasPorProducto")]
+        [Route("api/ExistenciasPorProducto/{idProducto}")]
         public IQueryable<V_prd_inventory_stock> GetExistenciasPorProducto(int idProducto)
         { 
-            IQueryable<V_prd_inventory_stock> V_prd_inventory_stock = from datos in db.V_prd_inventory_stock
-                                                               where
-                                            datos.iDproducto == idProducto
-                                                               select datos;
+            IQueryable<V_prd_inventory_stock> V_prd_inventory_stock = 
+                from datos in db.V_prd_inventory_stock 
+                where datos.iDproducto == idProducto
+                select datos;
             return V_prd_inventory_stock;
         }
 
 
         // GET: api/ExistenciasPorProducto
         [HttpGet]
-        [Route("api/ExistenciasPorBodega")]
+        [Route("api/ExistenciasPorBodega/{idBodega}")]
         public IQueryable<V_prd_inventory_stock> GetExistenciasPorBodega(int idBodega)
         {
-            IQueryable<V_prd_inventory_stock> V_prd_inventory_stock = from datos in db.V_prd_inventory_stock
-                                                                      where
-                                                   datos.idBodega == idBodega
-                                                                      select datos;
+            IQueryable<V_prd_inventory_stock> V_prd_inventory_stock = 
+                from datos in db.V_prd_inventory_stock
+                where datos.idBodega == idBodega
+                select datos;
             return V_prd_inventory_stock;
         }
 
