@@ -14,48 +14,44 @@ using apiFacturacionPrb.Models;
 namespace apiFacturacionPrb.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class Cl_customerController : ApiController
+    public class Sis_parametrosController : ApiController
     {
-        private Model1 db = new Model1();
-        private Model2 db2 = new Model2();
+        private Model3 db = new Model3();
 
-
-
-
-        // GET: api/Cl_customer
-        public IQueryable<VCl_customer> GetCl_customer()
+        // GET: api/Sis_parametros
+        public IQueryable<Sis_parametros> GetSis_parametros()
         {
-            return db2.VCl_customer;
+            return db.Sis_parametros;
         }
 
-        // GET: api/Cl_customer/5
-        [ResponseType(typeof(Cl_customer))]
-        public IHttpActionResult GetCl_customer(int id)
+        // GET: api/Sis_parametros/5
+        [ResponseType(typeof(Sis_parametros))]
+        public IHttpActionResult GetSis_parametros(int id)
         {
-            Cl_customer cl_customer = db.Cl_customer.Find(id);
-            if (cl_customer == null)
+            Sis_parametros sis_parametros = db.Sis_parametros.Find(id);
+            if (sis_parametros == null)
             {
                 return NotFound();
             }
 
-            return Ok(cl_customer);
+            return Ok(sis_parametros);
         }
 
-        // PUT: api/Cl_customer/5
+        // PUT: api/Sis_parametros/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutCl_customer(int id, Cl_customer cl_customer)
+        public IHttpActionResult PutSis_parametros(int id, Sis_parametros sis_parametros)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != cl_customer.idCliente)
+            if (id != sis_parametros.idParametro)
             {
                 return BadRequest();
             }
 
-            db.Entry(cl_customer).State = EntityState.Modified;
+            db.Entry(sis_parametros).State = EntityState.Modified;
 
             try
             {
@@ -63,7 +59,7 @@ namespace apiFacturacionPrb.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!Cl_customerExists(id))
+                if (!Sis_parametrosExists(id))
                 {
                     return NotFound();
                 }
@@ -76,35 +72,35 @@ namespace apiFacturacionPrb.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Cl_customer
-        [ResponseType(typeof(Cl_customer))]
-        public IHttpActionResult PostCl_customer(Cl_customer cl_customer)
+        // POST: api/Sis_parametros
+        [ResponseType(typeof(Sis_parametros))]
+        public IHttpActionResult PostSis_parametros(Sis_parametros sis_parametros)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Cl_customer.Add(cl_customer);
+            db.Sis_parametros.Add(sis_parametros);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = cl_customer.idCliente }, cl_customer);
+            return CreatedAtRoute("DefaultApi", new { id = sis_parametros.idParametro }, sis_parametros);
         }
 
-        // DELETE: api/Cl_customer/5
-        [ResponseType(typeof(Cl_customer))]
-        public IHttpActionResult DeleteCl_customer(int id)
+        // DELETE: api/Sis_parametros/5
+        [ResponseType(typeof(Sis_parametros))]
+        public IHttpActionResult DeleteSis_parametros(int id)
         {
-            Cl_customer cl_customer = db.Cl_customer.Find(id);
-            if (cl_customer == null)
+            Sis_parametros sis_parametros = db.Sis_parametros.Find(id);
+            if (sis_parametros == null)
             {
                 return NotFound();
             }
 
-            db.Cl_customer.Remove(cl_customer);
+            db.Sis_parametros.Remove(sis_parametros);
             db.SaveChanges();
 
-            return Ok(cl_customer);
+            return Ok(sis_parametros);
         }
 
         protected override void Dispose(bool disposing)
@@ -116,9 +112,9 @@ namespace apiFacturacionPrb.Controllers
             base.Dispose(disposing);
         }
 
-        private bool Cl_customerExists(int id)
+        private bool Sis_parametrosExists(int id)
         {
-            return db.Cl_customer.Count(e => e.idCliente == id) > 0;
+            return db.Sis_parametros.Count(e => e.idParametro == id) > 0;
         }
     }
 }

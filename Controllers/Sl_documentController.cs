@@ -17,6 +17,7 @@ namespace apiFacturacionPrb.Controllers
     public class Sl_documentController : ApiController
     {
         private Model1 db = new Model1();
+        private Model2 db2 = new Model2();
 
         // GET: api/Sl_document
         public IQueryable<Sl_document> GetSl_document()
@@ -36,6 +37,112 @@ namespace apiFacturacionPrb.Controllers
 
             return Ok(sl_document);
         }
+
+        // GET: api/V_Sl_discounts
+        [HttpGet]
+        [Route("api/documentosActivos")]
+        public IQueryable<VSl_document> Get_documentos_estado_cero()
+        {
+            return db2.VSl_document.Where(s => s.idEstado.Equals(0)).AsQueryable();
+        }
+
+
+        // put: api/eliminarDocumento/2
+        [HttpPut]
+        [Route("api/eliminarDocumento/{idDocumento}")]
+        public IHttpActionResult Put_EliminarDocumentos( int idDocumento)
+        {
+            Sl_document sl_document = new Sl_document()  ;
+            Sl_document_States Sl_document_States = new Sl_document_States();
+
+            
+
+            if (!Sl_documentExists(idDocumento))
+            {
+                return NotFound();
+            }
+
+
+            Sl_document_States = (from s in db.Sl_document_States
+                           where s.nombre == "eliminado"
+                           select s).FirstOrDefault<Sl_document_States>();
+             
+             
+            if (Sl_document_States == null) {
+                throw new Exception("no exite el estado eliminado en la lista de estado documento "); 
+            }
+
+            sl_document = db.Sl_document.Find(idDocumento);
+
+            sl_document.idEstado = Sl_document_States.idEstado;
+            db.Entry(sl_document);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+                 
+            }
+
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+
+        // put: api/cerrarDocumento/2
+        [HttpPut]
+        [Route("api/cerrarDocumento/{idDocumento}")]
+        public IHttpActionResult Put_CerrarDocumentos(int idDocumento)
+        {
+            Sl_document sl_document = new Sl_document();
+            Sl_document_States Sl_document_States = new Sl_document_States();
+
+
+
+            if (!Sl_documentExists(idDocumento))
+            {
+                return NotFound();
+            }
+
+
+            Sl_document_States = (from s in db.Sl_document_States
+                                  where s.nombre == "factura"
+                                  select s).FirstOrDefault<Sl_document_States>();
+
+
+            if (Sl_document_States == null)
+            {
+                throw new Exception("no exite el estado factura en la lista de estado documento ");
+            }
+
+            sl_document = db.Sl_document.Find(idDocumento);
+
+
+            if (sl_document.Sl_document_products.Count <= 0) {
+                throw new Exception("El documento no tiene Productos a facturar");
+            }
+
+            sl_document.idEstado = Sl_document_States.idEstado;
+            db.Entry(sl_document);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+
+            }
+
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+
 
         // PUT: api/Sl_document/5
         [ResponseType(typeof(void))]

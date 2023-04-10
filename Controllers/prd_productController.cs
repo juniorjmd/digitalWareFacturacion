@@ -53,11 +53,11 @@ namespace apiFacturacionPrb.Controllers
 
             db.Entry(prd_product).State = EntityState.Modified;
 
-            if (!prd_codigoExists(id,prd_product.codigo))
+            if (prd_codigoExists(id,prd_product.codigo))
             {
                 throw new DbUpdateConcurrencyException("el codigo a insertar ya existe en la base de datos") ;
             }
-            if (!prd_codigoBarraExists(id,prd_product.codigoBarras))
+            if (prd_codigoBarraExists(id,prd_product.codigoBarras))
             {
                 throw new DbUpdateConcurrencyException("el codigo a insertar ya existe en la base de datos") ;
             }
@@ -133,10 +133,13 @@ namespace apiFacturacionPrb.Controllers
         }
         private bool prd_codigoExists(int idProducto, string codigo)
         {
+            Boolean res;
             IQueryable<prd_product> prd_product = from datos in db.prd_product
                 where datos.iDproducto != idProducto
                 select datos;
-            return prd_product.Count( e => e.codigo == codigo) > 0;
+
+            res = prd_product.Count(e => e.codigo == codigo) > 0;
+            return res;
         }
         private bool prd_codigoNewExists(  string codigo)
         {

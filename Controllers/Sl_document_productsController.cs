@@ -17,6 +17,7 @@ namespace apiFacturacionPrb.Controllers
     public class Sl_document_productsController : ApiController
     {
         private Model1 db = new Model1();
+        private Model2 db2 = new Model2();
 
         // GET: api/Sl_document_products
         public IQueryable<Sl_document_products> GetSl_document_products()
@@ -41,6 +42,8 @@ namespace apiFacturacionPrb.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutSl_document_products(int id, Sl_document_products sl_document_products)
         {
+            Sl_taxes prd_taxes;
+            Sl_discounts Sl_discounts;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -50,6 +53,58 @@ namespace apiFacturacionPrb.Controllers
             {
                 return BadRequest();
             }
+            prd_product prd_product = db.prd_product.Find(sl_document_products.iDproducto);
+            if (prd_product == null)
+            {
+                throw new Exception("El producto a ingresar no Existe");
+            }
+
+            if (sl_document_products.cantidad <= 0)
+            {
+                throw new Exception("La cantidad debe ser mayor a cero");
+            }
+            Sl_discounts = db.Sl_discounts.Find(prd_product.iDdescuento);
+                  
+            prd_taxes = prd_product.Sl_taxes;
+            sl_document_products.precioUnitario = prd_product.precio ;
+
+            if (Sl_discounts != null && Sl_discounts.aplicaA.Trim().Equals("P"))
+            {
+                    decimal valorTotal = (decimal)Sl_discounts.valor;
+                if (  valorTotal> 0)
+                {
+                    if (Sl_discounts.tipoValor.Trim().Equals("P"))
+                    {
+                        valorTotal = sl_document_products.precioUnitario * valorTotal / 100;
+                    }
+
+                    if (Sl_discounts.esIncluido.Trim().Equals("S")) {
+                        sl_document_products.precioUnitario = sl_document_products.precioUnitario +
+                                   valorTotal;
+                    }
+
+                    sl_document_products.TotalDescuentos = valorTotal * sl_document_products.cantidad;
+
+                }
+            } 
+
+            if (prd_taxes != null && prd_taxes.aplicaA.Trim().Equals("P"))
+            {
+                decimal valorTotal = (decimal)prd_taxes.valor;
+                if (valorTotal > 0)
+                {
+                    if (prd_taxes.tipoValor.Trim().Equals("P"))
+                    {
+                        valorTotal = sl_document_products.precioUnitario * valorTotal / 100;
+                    }
+
+                    if (prd_taxes.esIncluido.Trim().Equals("S"))
+                    {
+                        sl_document_products.precioUnitario -= valorTotal;
+                    }
+                    sl_document_products.TotalImpuestos  = valorTotal * sl_document_products.cantidad;
+                }
+            } 
 
             db.Entry(sl_document_products).State = EntityState.Modified;
 
@@ -76,15 +131,79 @@ namespace apiFacturacionPrb.Controllers
         [ResponseType(typeof(Sl_document_products))]
         public IHttpActionResult PostSl_document_products(Sl_document_products sl_document_products)
         {
+            Sl_taxes prd_taxes;
+            Sl_discounts Sl_discounts;
+            VSl_document_products VSl_document_products = new VSl_document_products();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+             
+            prd_product prd_product = db.prd_product.Find(sl_document_products.iDproducto);
+            if (prd_product == null)
+            {
+                throw new Exception("El producto a ingresar no Existe");
+            }
+
+            if (sl_document_products.cantidad <= 0)
+            {
+                throw new Exception("La cantidad debe ser mayor a cero");
+            }
+            Sl_discounts = db.Sl_discounts.Find(prd_product.iDdescuento);
+            prd_taxes = prd_product.Sl_taxes;
+            sl_document_products.precioUnitario = prd_product.precio ;
+
+            if (Sl_discounts != null && Sl_discounts.aplicaA.Trim().Equals("P"))
+            {
+                    decimal valorTotal = (decimal)Sl_discounts.valor;
+                if (  valorTotal> 0)
+                {
+                    if (Sl_discounts.tipoValor.Trim().Equals("P"))
+                    {
+                        valorTotal = sl_document_products.precioUnitario * valorTotal / 100;
+                    }
+
+                    if (Sl_discounts.esIncluido.Trim().Equals("S")) {
+                        sl_document_products.precioUnitario = sl_document_products.precioUnitario +
+                                   valorTotal;
+                    }
+
+                    sl_document_products.TotalDescuentos =  valorTotal * sl_document_products.cantidad;
+
+                }
+            } 
+            if (prd_taxes != null && prd_taxes.aplicaA.Trim().Equals("P"))
+            {
+                decimal valorTotal = (decimal)prd_taxes.valor;
+                if (valorTotal > 0)
+                {
+                    if (prd_taxes.tipoValor.Trim().Equals("P"))
+                    {
+                        valorTotal = sl_document_products.precioUnitario * valorTotal / 100;
+                    }
+
+                    if (prd_taxes.esIncluido.Trim().Equals("S"))
+                    {
+                        sl_document_products.precioUnitario -= valorTotal;
+                    }
+                    sl_document_products.TotalImpuestos  = valorTotal * sl_document_products.cantidad;
+                }
+            } 
 
             db.Sl_document_products.Add(sl_document_products);
             db.SaveChanges();
+            
+            VSl_document_products.idDocProduct = sl_document_products.idDocProduct;
+            VSl_document_products.iDproducto = sl_document_products.iDproducto;
+            VSl_document_products.cantidad = sl_document_products.cantidad;
+            VSl_document_products.precioUnitario = sl_document_products.precioUnitario;
+            VSl_document_products.TotalImpuestos = sl_document_products.TotalImpuestos;
+            VSl_document_products.TotalDescuentos = sl_document_products.TotalDescuentos;
+            VSl_document_products.TotalSinImpuestos = sl_document_products.TotalSinImpuestos;
+            VSl_document_products.TotalFinal = sl_document_products.TotalFinal;
+            VSl_document_products.idDocumento = sl_document_products.idDocumento;
 
-            return CreatedAtRoute("DefaultApi", new { id = sl_document_products.idDocProduct }, sl_document_products);
+            return CreatedAtRoute("DefaultApi", new { id = sl_document_products.idDocProduct }, VSl_document_products);
         }
 
         // DELETE: api/Sl_document_products/5

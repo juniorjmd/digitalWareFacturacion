@@ -17,11 +17,12 @@ namespace apiFacturacionPrb.Controllers
     public class prd_inventory_warehouseController : ApiController
     {
         private Model1 db = new Model1();
+        private Model2 db2 = new Model2();
 
         // GET: api/prd_inventory_warehouse
-        public IQueryable<prd_inventory_warehouse> Getprd_inventory_warehouse()
+        public IQueryable<V_prd_inventory_warehouse> Getprd_inventory_warehouse()
         {
-            return db.prd_inventory_warehouse;
+            return db2.V_prd_inventory_warehouse; 
         }
 
         // GET: api/prd_inventory_warehouse/5

@@ -19,6 +19,11 @@ namespace apiFacturacionPrb.Models
         public virtual DbSet<V_prd_product> V_prd_product { get; set; }
         public virtual DbSet<V_Sl_discounts> V_Sl_discounts { get; set; }
         public virtual DbSet<V_sl_taxes> V_sl_taxes { get; set; }
+        public virtual DbSet<VCl_customer> VCl_customer { get; set; }
+        public virtual DbSet<VSis_usuario> VSis_usuario { get; set; }
+        public virtual DbSet<VSl_document> VSl_document { get; set; }
+        public virtual DbSet<VSl_document_cliente> VSl_document_cliente { get; set; }
+        public virtual DbSet<VSl_document_products> VSl_document_products { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -175,6 +180,114 @@ namespace apiFacturacionPrb.Models
             modelBuilder.Entity<V_sl_taxes>()
                 .Property(e => e.esVariable)
                 .IsFixedLength();
+
+            modelBuilder.Entity<VCl_customer>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VCl_customer>()
+                .Property(e => e.lastname)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VCl_customer>()
+                .Property(e => e.idNumber)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VCl_customer>()
+                .Property(e => e.label)
+                .IsFixedLength();
+
+            modelBuilder.Entity<VCl_customer>()
+                .Property(e => e.nombreTipo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VSis_usuario>()
+                .Property(e => e.usuario)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VSis_usuario>()
+                .Property(e => e.pass)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VSis_usuario>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VSis_usuario>()
+                .Property(e => e.lastname)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VSis_usuario>()
+                .Property(e => e.idNumber)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VSis_usuario>()
+                .Property(e => e.label)
+                .IsFixedLength();
+
+            modelBuilder.Entity<VSis_usuario>()
+                .Property(e => e.nombreTipo)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VSl_document>()
+                .Property(e => e.Sub_total)
+                .HasPrecision(16, 2);
+
+            modelBuilder.Entity<VSl_document>()
+                .Property(e => e.Impuestos)
+                .HasPrecision(16, 2);
+
+            modelBuilder.Entity<VSl_document>()
+                .Property(e => e.Descuento)
+                .HasPrecision(16, 2);
+
+            modelBuilder.Entity<VSl_document_cliente>()
+                .Property(e => e.Sub_total)
+                .HasPrecision(16, 2);
+
+            modelBuilder.Entity<VSl_document_cliente>()
+                .Property(e => e.Impuestos)
+                .HasPrecision(16, 2);
+
+            modelBuilder.Entity<VSl_document_cliente>()
+                .Property(e => e.Descuento)
+                .HasPrecision(16, 2);
+
+            modelBuilder.Entity<VSl_document_cliente>()
+                .Property(e => e.name)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VSl_document_cliente>()
+                .Property(e => e.lastname)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<VSl_document_products>()
+                .Property(e => e.cantidad)
+                .HasPrecision(10, 0);
+
+            modelBuilder.Entity<VSl_document_products>()
+                .Property(e => e.precioUnitario)
+                .HasPrecision(16, 2);
+
+            modelBuilder.Entity<VSl_document_products>()
+                .Property(e => e.TotalImpuestos)
+                .HasPrecision(16, 2);
+
+            modelBuilder.Entity<VSl_document_products>()
+                .Property(e => e.TotalDescuentos)
+                .HasPrecision(16, 2);
+
+            modelBuilder.Entity<VSl_document_products>()
+                .Property(e => e.TotalSinImpuestos)
+                .HasPrecision(28, 2);
+
+            modelBuilder.Entity<VSl_document_products>()
+                .Property(e => e.TotalFinal)
+                .HasPrecision(29, 2);
+
+            modelBuilder.Entity<VSl_document_products>()
+                .Property(e => e.nombreProducto)
+                .IsUnicode(false);
         }
     }
 }

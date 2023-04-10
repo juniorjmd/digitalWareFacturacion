@@ -6,34 +6,46 @@ namespace apiFacturacionPrb.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Sl_document_products
+    public partial class VSl_document_products
     {
         [Key]
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int idDocProduct { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int iDproducto { get; set; }
 
-        [Column(TypeName = "numeric")]
+        [Key]
+        [Column(Order = 2, TypeName = "numeric")]
         public decimal cantidad { get; set; }
 
+        [Key]
+        [Column(Order = 3)]
         public decimal precioUnitario { get; set; }
 
+        [Key]
+        [Column(Order = 4)]
         public decimal TotalImpuestos { get; set; }
 
+        [Key]
+        [Column(Order = 5)]
         public decimal TotalDescuentos { get; set; }
 
         [Column(TypeName = "numeric")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal? TotalSinImpuestos { get; set; }
 
         [Column(TypeName = "numeric")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public decimal? TotalFinal { get; set; }
 
+        [Key]
+        [Column(Order = 6)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int idDocumento { get; set; }
 
-        public virtual prd_product prd_product { get; set; }
-
-        public virtual Sl_document Sl_document { get; set; }
+        [StringLength(201)]
+        public string nombreProducto { get; set; }
     }
 }
