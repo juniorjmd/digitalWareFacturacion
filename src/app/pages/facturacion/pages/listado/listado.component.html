@@ -4,7 +4,40 @@
         <dx-data-grid id="dataGrid" [dataSource]="dataSource" keyExpr="idDocumento" [showBorders]="true">
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxo-paging [enabled]="true"></dxo-paging>
+            <dxo-master-detail [enabled]="true" template="documentos"></dxo-master-detail>
 
+
+
+            <dxi-column dataField="idDocumento" dataType="number" caption="# Factura" [allowEditing]="false">
+            </dxi-column>
+
+            <dxi-column dataField="Sub_total" [hidingPriority]="1" dataType="number" caption="Subtotal" [allowEditing]="false">
+            </dxi-column>
+            <dxi-column dataField="Descuento" [hidingPriority]="2" dataType="number" caption="Descuento" [allowEditing]="false">
+            </dxi-column>
+
+            <dxi-column dataField="Impuestos" [hidingPriority]="3" dataType="number" caption="Impuesto" [allowEditing]="false">
+            </dxi-column>
+            <dxi-column dataField="totalFactura" [hidingPriority]="4" dataType="number" caption="Total" [allowEditing]="false">
+            </dxi-column>
+
+            <dxi-column dataField="doc_date" dataType="date" caption="Fecha de Facturacion" [allowEditing]="false">
+            </dxi-column>
+            <dxi-column dataField="name" dataType="number" caption="Nombre" [allowEditing]="false">
+            </dxi-column>
+
+            <dxi-column dataField="lastname" dataType="number" caption="Apellido" [allowEditing]="false">
+            </dxi-column>
+            <dxi-column dataField="birthdate" [hidingPriority]="0" dataType="date" caption="Fecha de nacimiento" [allowEditing]="false">
+            </dxi-column>
+
+            <dxi-column dataField="Edad" dataType="number" caption="Edad" [allowEditing]="false">
+            </dxi-column>
+
+            <div *dxTemplate="let order of 'documentos'">
+                Productos Vendidos
+                <app-ventas-realizadas [key]="order.key"></app-ventas-realizadas>
+            </div>
         </dx-data-grid>
     </div>
 </div>

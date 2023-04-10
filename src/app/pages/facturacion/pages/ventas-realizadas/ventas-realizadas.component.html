@@ -1,1 +1,37 @@
-<p>ventas-realizadas works!</p>
+<dx-data-grid id="dataGrid" keyExpr="idDocProduct" [dataSource]="dataSource" [showBorders]="true">
+
+
+
+
+    <dxi-column visible="false" dataField="idDocProduct" dataType="number">
+    </dxi-column>
+
+
+    <dxi-column dataField="nombreProducto" dataType="string" caption="nombre" [allowEditing]="false">
+    </dxi-column>
+
+
+    <dxi-column dataField="precioUnitario" dataType="number" caption="precio" [allowEditing]="false">
+    </dxi-column>
+
+
+    <dxi-column dataField="cantidad" dataType="number" caption="Cantidad" [allowEditing]="false">
+    </dxi-column>
+
+    <dxi-column dataField="TotalSinImpuestos" dataType="number" caption="subTotal" [allowEditing]="false">
+    </dxi-column>
+
+
+    <dxi-column dataField="TotalDescuentos" dataType="number" caption="Descuento" [allowEditing]="false">
+    </dxi-column>
+
+
+    <dxi-column dataField="TotalImpuestos" dataType="number" caption="impuesto" [allowEditing]="false">
+    </dxi-column>
+
+
+    <dxi-column dataField="TotalFinal" dataType="number" caption="Total" [allowEditing]="false">
+    </dxi-column>
+
+
+</dx-data-grid>
