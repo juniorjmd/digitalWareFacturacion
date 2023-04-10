@@ -1,11 +1,11 @@
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { global } from '../globals';
+import { Injectable } from '@angular/core'; 
 import { Cliente, TipoId } from '../interfaces/cliente';
 
 import { lastValueFrom } from 'rxjs';
 import { formatDate } from 'devextreme/localization';
+import { globales } from '../globals';
  
 
 @Injectable({
@@ -14,8 +14,8 @@ import { formatDate } from 'devextreme/localization';
 export class ClientesService {
  
   requests: string[] = [];
-  URL = global.url + 'Cl_customer/';
-  URLTI = global.url + 'Cl_typeId/';
+  URL = globales.url + 'Cl_customer/';
+  URLTI = globales.url + 'Cl_typeId/';
   headers = new HttpHeaders().set('Content-Type' , 'application/json'); 
   optHeader =  {headers : this.headers } ;
 
@@ -24,7 +24,7 @@ export class ClientesService {
   }
 
 
-  getClientes(){ 
+getClientes(){ 
     console.log(`${this.URL}` , this.optHeader);
     
    let result =   this.http.get<Cliente[]>( `${this.URL}` , this.optHeader);
@@ -35,13 +35,10 @@ export class ClientesService {
 return lastValueFrom(result)
 .then((data: any) =>  data)
 .catch((e) => {
-  throw e && e.error && e.error.Message;
+  throw e && e.error && e.error.Message && e.error.ExceptionMessage;
 });
 
 }
-
-
-
 postClientes(datos:any){
   console.log(`${this.URL}`, datos , this.optHeader);
    
@@ -54,7 +51,7 @@ postClientes(datos:any){
 return lastValueFrom(result)
 .then((data: any) =>  data)
 .catch((e) => {
-throw e && e.error && e.error.Message;
+throw e && e.error && e.error.Message && e.error.ExceptionMessage;
 });
 
 }
@@ -65,12 +62,10 @@ putClientes(datos:any|Cliente ,id : number){
 return lastValueFrom(result)
 .then((data: any) =>  data)
 .catch((e) => {
-throw e && e.error && e.error.Message;
+throw e && e.error && e.error.Message && e.error.ExceptionMessage;
 });
 
 }
-
-
 deleteClientes( id : number){ 
   console.log(`${this.URL}${id}`,   this.optHeader);  
  let result =   this.http.delete<Cliente[]>(`${this.URL}${id}` ,  this.optHeader );
@@ -79,7 +74,7 @@ deleteClientes( id : number){
 return lastValueFrom(result)
 .then((data: any) =>  data)
 .catch((e) => {
-throw e && e.error && e.error.Message;
+throw e && e.error && e.error.Message && e.error.ExceptionMessage;
 });
 
 }

@@ -4,6 +4,7 @@ import DataGrid from "devextreme/ui/data_grid";
 import CustomStore from 'devextreme/data/custom_store';
 import Swal from 'sweetalert2';
 import { InventarioService } from '../../../../services/inventario.service';
+import { globales } from 'src/app/globals';
 
 @Component({
   selector: 'app-bodegas',
@@ -19,6 +20,8 @@ export class BodegasComponent {
 
   constructor( private sInventario : InventarioService)
 {
+  
+  globales.llamador = 'bodegas';
   this.dataSource = new CustomStore({
     key: 'idBodega',
     load: () => this.sInventario.getBodegas() ,

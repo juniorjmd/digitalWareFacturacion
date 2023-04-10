@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { global } from '../globals';
+import { globales } from '../globals';
 import { Bodega } from '../interfaces/bodega';
 import { Categoria } from '../interfaces/categoria';
 import { TaxesDescuentos } from '../interfaces/taxes-descuentos';
@@ -11,24 +11,24 @@ import { TaxesDescuentos } from '../interfaces/taxes-descuentos';
 })
 export class InventarioService {
   requests: string[] = [];
-  URL_bodega = global.url + 'prd_inventory_warehouse/';
-  URL_descuentos = global.url + 'Sl_discounts/';
-  URL_taxes = global.url + 'Sl_taxes/';
-  URL_brand = global.url + 'prd_brands/';
-  URL_group = global.url + 'prd_groups/';
-  URL_productos = global.url  + 'prd_product/';
-  URL_view_brand = global.url + 'V_prd_brands/';
-  URL_view_descuentos = global.url + 'V_Sl_discounts/';
-  URL_view_taxes = global.url + 'V_Sl_taxes/'; 
-  URL_view_group = global.url + 'V_prd_groups/'; 
+  URL_bodega = globales.url + 'prd_inventory_warehouse/';
+  URL_descuentos = globales.url + 'Sl_discounts/';
+  URL_taxes = globales.url + 'Sl_taxes/';
+  URL_brand = globales.url + 'prd_brands/';
+  URL_group = globales.url + 'prd_groups/';
+  URL_productos = globales.url  + 'prd_product/';
+  URL_view_brand = globales.url + 'V_prd_brands/';
+  URL_view_descuentos = globales.url + 'V_Sl_discounts/';
+  URL_view_taxes = globales.url + 'V_Sl_taxes/'; 
+  URL_view_group = globales.url + 'V_prd_groups/'; 
 
 
 
   
-  URL_taxesProducto = global.url + 'taxesProducto/'; 
-  URL_taxesFactura = global.url + 'taxesFactura/'; 
-  URL_descuentosFactura = global.url + 'descuentosFactura/'; 
-  URL_descuentosProducto = global.url + 'descuentosProducto/'; 
+  URL_taxesProducto = globales.url + 'taxesProducto/'; 
+  URL_taxesFactura = globales.url + 'taxesFactura/'; 
+  URL_descuentosFactura = globales.url + 'descuentosFactura/'; 
+  URL_descuentosProducto = globales.url + 'descuentosProducto/'; 
 
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   optHeader = { headers: this.headers };
@@ -37,10 +37,21 @@ export class InventarioService {
     console.log('Bodegas service inicializado');
   }
 
-  enviarPeticionGet(url:string){  
-  return this.http.get<any[]>( `${global.url}${url}/` , this.optHeader);
+  enviarPeticionGet(url:string = '') { 
+    if(url == ''  ){ throw('la url del servicio no debe estar vacio')}
+  return this.http.get<any[]>( `${globales.url}${url}/` , this.optHeader);
   
   } 
+
+  enviarPeticionGetlastValue(url:string = '') { 
+    if(url == ''  ){ throw('la url del servicio no debe estar vacio')}
+    let result = this.http.get<any[]>( `${globales.url}${url}` , this.optHeader);
+    return lastValueFrom(result)
+      .then((data: any) => data)
+      .catch((e) => {
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
+      });
+  }
   //-----------------------------------------------------------------------
   //   CRUD Marcas
   //-----------------------------------------------------------------------
@@ -50,7 +61,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   postBrands(datos: any) {
@@ -64,7 +75,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   putBrands(datos: any | Bodega, id: number) {
@@ -77,7 +88,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   deleteBrands(id: number) {
@@ -89,7 +100,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
 
@@ -104,7 +115,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   postProductos(datos: any) {
@@ -118,7 +129,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   putProductos(datos: any | Bodega, id: number) {
@@ -131,7 +142,9 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        console.error(e);
+        
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage ;
       });
   }
   deleteProductos(id: number) {
@@ -143,7 +156,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
 
@@ -156,7 +169,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   postCategorias(datos: any) {
@@ -170,7 +183,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   putCategorias(datos: any | Categoria, id: number) {
@@ -183,7 +196,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   deleteCategorias(id: number) {
@@ -195,7 +208,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
 
@@ -208,7 +221,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   postBodegas(datos: any) {
@@ -222,7 +235,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   putBodegas(datos: any | Bodega, id: number) {
@@ -235,7 +248,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   deleteBodegas(id: number) {
@@ -247,7 +260,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
 
@@ -255,10 +268,10 @@ export class InventarioService {
   //   CRUD descuentos y taxes  URL_descuentos ,  URL_taxes
   //-----------------------------------------------------------------------
 /**
-  URL_taxesProducto = global.url + 'taxesProducto/'; 
-  URL_taxesFactura = global.url + 'taxesFactura/'; 
-  URL_descuentosFactura = global.url + 'descuentosFactura/'; 
-  URL_descuentosProducto = global.url + 'descuentosProducto/';  */
+  URL_taxesProducto = globales.url + 'taxesProducto/'; 
+  URL_taxesFactura = globales.url + 'taxesFactura/'; 
+  URL_descuentosFactura = globales.url + 'descuentosFactura/'; 
+  URL_descuentosProducto = globales.url + 'descuentosProducto/';  */
 
 
   getTaxes_DescuentosProductos(tRegitro = 'T') {
@@ -268,7 +281,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
 
@@ -280,7 +293,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
 
@@ -302,7 +315,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   postTaxes_Descuentos(datos: any, tRegitro = 'T') {
@@ -316,7 +329,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   putTaxes_Descuentos(
@@ -334,7 +347,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
   deleteTaxes_Descuentos(id: number, tRegitro = 'T') {
@@ -347,7 +360,7 @@ export class InventarioService {
     return lastValueFrom(result)
       .then((data: any) => data)
       .catch((e) => {
-        throw e && e.error && e.error.Message;
+        throw e && e.error && e.error.Message && e.error.ExceptionMessage;
       });
   }
 }

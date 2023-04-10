@@ -3,6 +3,7 @@ import DataGrid from 'devextreme/ui/data_grid';
 import CustomStore from 'devextreme/data/custom_store';
 import Swal from 'sweetalert2';
 import { InventarioService } from '../../../../services/inventario.service';
+import { globales } from 'src/app/globals';
 
 @Component({
   selector: 'app-productos',
@@ -20,6 +21,7 @@ export class ProductosComponent {
   descuentoSource: any;
   constructor(private sInventario: InventarioService) {
     this.inicioListado();
+    globales.llamador = 'productos';
   }
 
   async generarJsonActualizar(values: any) {

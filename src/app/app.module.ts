@@ -7,7 +7,7 @@ import { FooterModule, ResetPasswordFormModule, CreateAccountFormModule, ChangeP
 import { AuthService, ScreenService, AppInfoService } from './shared/services';
 import { UnauthenticatedContentModule } from './unauthenticated-content';
 import { AppRoutingModule } from './app-routing.module';
-import { DxButtonModule } from 'devextreme-angular';
+import { DxButtonModule, DxCheckBoxModule, DxMenuModule, DxSelectBoxModule } from 'devextreme-angular';
 import { DxDataGridModule } from 'devextreme-angular';
 import { FormsModule } from '@angular/forms';
 import { ClientesService } from './services/clientes.service';
@@ -26,6 +26,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     DxDataGridModule,
     DxButtonModule,
+    DxMenuModule,
+    
+    DxSelectBoxModule,
+    DxCheckBoxModule,
     SideNavOuterToolbarModule,
     SideNavInnerToolbarModule,
     SingleCardModule,

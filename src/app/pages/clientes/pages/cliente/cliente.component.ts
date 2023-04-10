@@ -1,8 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Cliente, TipoId } from 'src/app/interfaces/cliente';
 import { ClientesService } from 'src/app/services/clientes.service';
-
-import { global } from '../../../../globals';
+ 
 import DataGrid from 'devextreme/ui/data_grid';
 import CustomStore from 'devextreme/data/custom_store';
 import Swal from 'sweetalert2';

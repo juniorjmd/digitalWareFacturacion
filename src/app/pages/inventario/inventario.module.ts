@@ -30,7 +30,8 @@ import { ExistenciasComponent } from './pages/existencias/existencias.component'
   imports: [
     DxDataGridModule,
     DxButtonModule,
-    CommonModule,InventarioRoutingModule
+    CommonModule,
+    InventarioRoutingModule
   ]
 })
 export class InventarioModule { }

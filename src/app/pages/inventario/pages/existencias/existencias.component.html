@@ -1,1 +1,48 @@
-<p>existencias works!</p>
+<dx-data-grid *ngIf="requeridoDesde=='productos'" [dataSource]="dataSource" [showBorders]="true">
+
+
+    <dxi-column dataField="nombreBodega" caption="Bodega">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+
+    <dxi-column dataField="cntInicial" caption="Inicio">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="cntVendida" caption="Ventas">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="cntComprada" caption="Compras">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="cntDevuelta" caption="Devoluciones">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="cntTotalActual" caption="Total">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+</dx-data-grid>
+
+
+<dx-data-grid *ngIf="requeridoDesde=='bodegas'" [dataSource]="dataSource" [showBorders]="true">
+
+
+    <dxi-column dataField="nombreProducto" caption="producto">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+
+    <dxi-column dataField="cntInicial" caption="Inicio">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="cntVendida" caption="Ventas">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="cntComprada" caption="Compras">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="cntDevuelta" caption="Devoluciones">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+    <dxi-column dataField="cntTotalActual" caption="Total">
+        <dxi-validation-rule type="required"></dxi-validation-rule>
+    </dxi-column>
+</dx-data-grid>

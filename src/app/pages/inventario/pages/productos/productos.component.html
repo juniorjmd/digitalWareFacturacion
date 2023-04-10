@@ -11,6 +11,11 @@
             <dxo-paging [enabled]="false"></dxo-paging>
             <dxo-editing mode="form" [allowUpdating]="true" [allowAdding]="true" [allowDeleting]="true">
             </dxo-editing>
+
+            <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+            <dxo-master-detail [enabled]="true" template="Existencias"></dxo-master-detail>
+
+
             <dxi-column [visible]="false" dataField="iDproducto" dataType="number" caption="id" [allowEditing]="false">
             </dxi-column>
 
@@ -56,6 +61,11 @@
                 <dxo-lookup [dataSource]="descuentoSource" valueExpr="iDdescuento" displayExpr="nombre">
                 </dxo-lookup>
             </dxi-column>
+
+            <div *dxTemplate="let order of 'Existencias'">
+                Movimientos por bodegas
+                <app-existencias [key]="order.key"></app-existencias>
+            </div>
         </dx-data-grid>
     </div>
 </div>

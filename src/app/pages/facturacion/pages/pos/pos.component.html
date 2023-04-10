@@ -1,128 +1,143 @@
-<h2 class="content-block">Pos</h2>
-<div class="content-block">
-    <div class="dx-card responsive-paddings">
-        <div class="container col-sm-12">
-            <div class="row">
-                <div class="container col-xs-12 col-md-9 col-xl-9 p-3">
-                    <div class="row">
-                        <div class="col-xs-12 col-xl-3 py-2">
-                            <input type="text" class="form-control" name="codProduct" placeholder="Cód producto" />
-                        </div>
-                        <div class="col-xs-12 col-xl-3 py-2">
-                            <input type="number" class="form-control" name="quantity" placeholder="Cantidad" />
-                        </div>
-                        <div class="col-xs-12 col-xl-3 py-2">
-                            <select class="form-select" disabled>
-                                <option>1234567890</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-12 col-xl-3 py-2">
-                            <button type="submit" class="btn btn-success px-5">Crear</button>
-                        </div>
-                    </div>
-                </div>
+<dx-toolbar class=" px-3">
+    <dxi-item location="before" widget="dxButton" locateInMenu="never">
+        <div *dxTemplate>
+            <div class="toolbar-label">
+                <h2>Pos</h2>
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-7 col-xl-8 bg-secondary bg-opacity-25 border border-dark rounded p-2">
-                    <div class="d-flex justify-content-evenly">
-                        <div class="col-3">
-                            <h5>Nombre</h5>
-                        </div>
-                        <div class="col-9">
-                            <h5>Producto 1</h5>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-evenly">
-                        <div class="col-4">
-                            <h5>Precio</h5>
-                        </div>
-                        <div class="col-4">
-                            <h5>IVA</h5>
-                        </div>
-                        <div class="col-4">
-                            <h5>Descuento</h5>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-evenly">
-                        <div class="col-4">
-                            <span>$ 50.000</span>
-                        </div>
-                        <div class="col-4">
-                            <span>$ 500</span>
-                        </div>
-                        <div class="col-4">
-                            <span>$ 50</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-4 col-xl-3 offset-md-1 bg-secondary bg-opacity-25 border border-dark rounded p-2">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="d-flex justify-content-between">
-                                <h6>Cliente</h6>
-                                <h6>C</h6>
+        </div>
+    </dxi-item>
+    <dxi-item location="center" widget="dxButton" locateInMenu="never">
+        <dx-tab-panel #tabPanel [height]="260" (onTitleClick)='cargarDocuento($event,tabPanel)' [dataSource]="documentos" [selectedIndex]="0" [loop]="false" [animationEnabled]="true" [swipeEnabled]="true">
+            <div *dxTemplate="let documento of 'title'">
+                <span>{{ documento.idDocumento }}</span>
+            </div>
+        </dx-tab-panel>
+    </dxi-item>
+    <dxi-item location="after" widget="dxButton" locateInMenu="auto" [options]="addButtonOptions">
+    </dxi-item>
+
+</dx-toolbar>
+
+<div *ngIf="showAll" class="dx-card responsive-paddings">
+    <div class="container col-sm-12">
+        <div class="row">
+
+            <div class="col-xs-12 p-3 col-sm-12 col-md-4 col-xl-12    bg-opacity-25 border border-dark rounded ">
+                <div class="row ">
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="d-flex justify-content-between">
+                                    <h6>Cliente</h6>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="d-flex justify-content-between">
-                                <h6>Vendedor</h6>
-                                <h6>V</h6>
+                        <div class="row">
+                            <div class="col-6">
+                                <dx-select-box #selecCliente [dataSource]="clientes" (onValueChanged)="actualizarClientes($event ,selecCliente )" displayExpr="name" valueExpr="idCliente" [value]="documentoActual.idCliente"></dx-select-box>
+
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <span>Nombre Cliente</span>
-                        </div>
-                        <div class="col-6">
-                            <span>Nombre Vendedor</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <button type="button" class="btn btn-outline-danger">Limpiar</button>
-                        </div>
-                        <div class="col-6">
-                            <button type="button" class="btn btn-outline-success">Finalizar</button>
+
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-outline-danger" (click)='eliminaDocumento()'>
+                        Eliminar Documento
+                      </button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" (click)='cerrarDocumento()' class="btn btn-outline-success">
+                        Cerrar<br> venta
+                      </button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
-            <hr class="border border-dark">
-            <div class="row">
-                <div class="col-sm-12 col-md-7 col-xl-9 mb-3">
-                    <ul class="list-group">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                        <li class="list-group-item">A fourth item</li>
-                        <li class="list-group-item">And a fifth one</li>
-                    </ul>
-                </div>
-                <div class="col-xs-9 col-md-5 col-xl-3 mb-3">
-                    <div class="d-flex justify-content-between">
-                        <h4>Impuestos</h4>
-                        <h4>$ 123</h4>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <h4>Descuentos</h4>
-                        <h4>$ 12</h4>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <h4>Total</h4>
-                        <h4>$ 123.000</h4>
-                    </div>
-                    <hr class="border border-dark">
-                    <h4>Otros</h4>
-                    <div class="d-flex justify-content-between">
-                        <div class="col-7">
-                            <h4 class="text-break">Hipoconsumo</h4>
+        </div>
+        <hr class="border border-dark" />
+        <div class="row">
+            <div class="col-sm-12 col-md-7 col-xl-9 mb-3">
+
+
+                <dx-data-grid id="dataGrid" (onSaved)="recargarDocumentoActual();" [dataSource]="dsLProductos" (onEditingStart)="onEditingStart($event)" keyExpr="idDocProduct" [showBorders]="true">
+
+                    <dxo-paging [enabled]="true"></dxo-paging>
+                    <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+                    <dxo-master-detail [enabled]="true" template="Existencias"></dxo-master-detail>
+
+                    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+                    </dxo-editing>
+                    <dxo-popup title="producto Info" [showTitle]="true" [width]="600" [height]="525">
+                    </dxo-popup>
+
+
+
+                    <dxi-column [visible]="false" dataField="idDocProduct" dataType="number" caption="codigo" [allowEditing]="false">
+                    </dxi-column>
+
+                    <dxi-column dataField="iDproducto" caption="producto">
+                        <dxi-validation-rule type="required"></dxi-validation-rule>
+                        <!-- provides actual values -->
+                        <dxo-lookup [dataSource]="dsProductos" valueExpr="iDproducto" displayExpr="nombre1">
+                        </dxo-lookup>
+                    </dxi-column>
+
+
+                    <dxi-column dataField="cantidad" dataType="number" caption="cantidad">
+                    </dxi-column>
+                    <dxi-column [allowEditing]="false" dataField="TotalSinImpuestos" caption="subTotal">
+                    </dxi-column>
+                    <dxi-column [allowEditing]="false" dataField="TotalImpuestos" caption="impuesto">
+                    </dxi-column>
+                    <dxi-column [allowEditing]="false" dataField="TotalDescuentos" caption="Descuento">
+                    </dxi-column>
+                    <dxi-column [allowEditing]="false" dataField="TotalFinal" caption="Total">
+                    </dxi-column>
+
+
+                </dx-data-grid>
+
+            </div>
+            <div class="col-xs-9 col-md-5 col-xl-3 mb-3">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-5"> Sub total </div>
+                            <div class="col-xs-5">{{documentoActual.Sub_total}}</div>
+
                         </div>
-                        <div class="col-5 text-end">
-                            <h4>$ 123.000</h4>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-5">Descuentos</div>
+                            <div class="col-xs-5">{{documentoActual.Descuento}}</div>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-5">Impuestos</div>
+                            <div class="col-xs-5">{{documentoActual.Impuestos}}</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-5"> Total </div>
+                            <div class="col-xs-5">{{documentoActual.totalFactura}}</div>
+                        </div>
+                    </li>
+                </ul>
+
+
             </div>
         </div>
     </div>

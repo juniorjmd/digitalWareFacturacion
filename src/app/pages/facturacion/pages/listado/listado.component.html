@@ -1,1 +1,10 @@
-<p>listado works!</p>
+<h2 class="content-block">Listado de ventas</h2>
+<div class="content-block">
+    <div class="dx-card responsive-paddings">
+        <dx-data-grid id="dataGrid" [dataSource]="dataSource" keyExpr="idDocumento" [showBorders]="true">
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-paging [enabled]="true"></dxo-paging>
+
+        </dx-data-grid>
+    </div>
+</div>
