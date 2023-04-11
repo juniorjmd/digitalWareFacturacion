@@ -127,7 +127,7 @@ getClientes(){
       return this.sFacturacion.sendGetRequestLastValue('documentosActivos'); }
     
     
-    
+
   })
     this.addButtonOptions = {
       icon: 'plus',
