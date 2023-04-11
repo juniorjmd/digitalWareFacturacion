@@ -1,4 +1,4 @@
-<dx-toolbar class=" px-3">
+<dx-toolbar class="px-3">
     <dxi-item location="before" widget="dxButton" locateInMenu="never">
         <div *dxTemplate>
             <div class="toolbar-label">
@@ -7,24 +7,23 @@
         </div>
     </dxi-item>
     <dxi-item location="center" widget="dxButton" locateInMenu="never">
-        <dx-tab-panel #tabPanel [height]="260" (onTitleClick)='cargarDocuento($event,tabPanel)' [dataSource]="documentos" [selectedIndex]="0" [loop]="false" [animationEnabled]="true" [swipeEnabled]="true">
+        <h6>Documentos Activos</h6>
+        <dx-tab-panel #tabPanel [height]="260" (onContentReady)="enviarClick()" (onTitleClick)="cargarDocuento($event, tabPanel)" [dataSource]="documentos" [selectedIndex]="0" [loop]="false" [animationEnabled]="true" [swipeEnabled]="true">
             <div *dxTemplate="let documento of 'title'">
                 <span>{{ documento.idDocumento }}</span>
             </div>
         </dx-tab-panel>
     </dxi-item>
 
-    <dxi-item location="after" widget="dxButton" locateInMenu="auto" [options]="addButtonOptions">
+    <dxi-item location="after" widget="dxButton" title="Crear Docomento" locateInMenu="auto" [options]="addButtonOptions">
     </dxi-item>
-
 </dx-toolbar>
 
 <div *ngIf="showAll" class="dx-card responsive-paddings">
     <div class="container col-sm-12">
         <div class="row">
-
-            <div class="col-xs-12 p-3 col-sm-12 col-md-4 col-xl-12    bg-opacity-25 border border-dark rounded ">
-                <div class="row ">
+            <div class="col-xs-12 p-3 col-sm-12 col-md-4 col-xl-12 bg-opacity-25 border border-dark rounded">
+                <div class="row">
                     <div class="col-8">
                         <div class="row">
                             <div class="col-6">
@@ -35,8 +34,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <dx-select-box #selecCliente [dataSource]="clientes" (onValueChanged)="actualizarClientes($event ,selecCliente )" displayExpr="name" valueExpr="idCliente" [value]="documentoActual.idCliente"></dx-select-box>
-
+                                <dx-select-box #selecCliente [searchEnabled]="true" searchMode="contains" searchExpr="name" [dataSource]="clientes" (onValueChanged)="actualizarClientes($event, selecCliente)" displayExpr="name" valueExpr="idCliente" [value]="documentoActual.idCliente"></dx-select-box>
                             </div>
                         </div>
                     </div>
@@ -44,30 +42,25 @@
                     <div class="col-4">
                         <div class="row">
                             <div class="col-6">
-                                <button type="button" class="btn btn-outline-danger" (click)='eliminaDocumento()'>
-                        Eliminar Documento
-                      </button>
+                                <button type="button" class="btn btn-outline-danger" (click)="eliminaDocumento()">
+                  Eliminar Documento
+                </button>
                             </div>
                             <div class="col-6">
-                                <button type="button" (click)='cerrarDocumento()' class="btn btn-outline-success">
-                        Cerrar<br> venta
-                      </button>
+                                <button type="button" (click)="cerrarDocumento()" class="btn btn-outline-success">
+                  Cerrar<br />
+                  venta
+                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
         <hr class="border border-dark" />
         <div class="row">
             <div class="col-sm-12 col-md-7 col-xl-9 mb-3">
-
-
-                <dx-data-grid id="dataGrid" (onSaved)="recargarDocumentoActual();" [dataSource]="dsLProductos" (onEditingStart)="onEditingStart($event)" keyExpr="idDocProduct" [showBorders]="true">
-
+                <dx-data-grid id="dataGrid" (onSaved)="recargarDocumentoActual()" [dataSource]="dsLProductos" (onEditingStart)="onEditingStart($event)" keyExpr="idDocProduct" [showBorders]="true">
                     <dxo-paging [enabled]="true"></dxo-paging>
                     <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
                     <dxo-master-detail [enabled]="true" template="Existencias"></dxo-master-detail>
@@ -76,8 +69,6 @@
                     </dxo-editing>
                     <dxo-popup title="producto Info" [showTitle]="true" [width]="600" [height]="525">
                     </dxo-popup>
-
-
 
                     <dxi-column [visible]="false" dataField="idDocProduct" dataType="number" caption="codigo" [allowEditing]="false">
                     </dxi-column>
@@ -89,7 +80,6 @@
                         </dxo-lookup>
                     </dxi-column>
 
-
                     <dxi-column dataField="cantidad" dataType="number" caption="cantidad">
                     </dxi-column>
                     <dxi-column [allowEditing]="false" dataField="TotalSinImpuestos" caption="subTotal">
@@ -100,45 +90,39 @@
                     </dxi-column>
                     <dxi-column [allowEditing]="false" dataField="TotalFinal" caption="Total">
                     </dxi-column>
-
-
                 </dx-data-grid>
-
             </div>
             <div class="col-xs-9 col-md-5 col-xl-3 mb-3">
                 <ul class="list-group">
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-1"></div>
-                            <div class="col-xs-5"> Sub total </div>
-                            <div class="col-xs-5">{{documentoActual.Sub_total}}</div>
-
+                            <div class="col-xs-5">Sub total</div>
+                            <div class="col-xs-5">{{ documentoActual.Sub_total }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-1"></div>
                             <div class="col-xs-5">Descuentos</div>
-                            <div class="col-xs-5">{{documentoActual.Descuento}}</div>
+                            <div class="col-xs-5">{{ documentoActual.Descuento }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-1"></div>
                             <div class="col-xs-5">Impuestos</div>
-                            <div class="col-xs-5">{{documentoActual.Impuestos}}</div>
+                            <div class="col-xs-5">{{ documentoActual.Impuestos }}</div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-1"></div>
-                            <div class="col-xs-5"> Total </div>
-                            <div class="col-xs-5">{{documentoActual.totalFactura}}</div>
+                            <div class="col-xs-5">Total</div>
+                            <div class="col-xs-5">{{ documentoActual.totalFactura }}</div>
                         </div>
                     </li>
                 </ul>
-
-
             </div>
         </div>
     </div>

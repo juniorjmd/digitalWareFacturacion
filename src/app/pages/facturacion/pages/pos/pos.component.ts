@@ -7,7 +7,7 @@ import DataGrid from 'devextreme/ui/data_grid';
 import { Documentos } from 'src/app/interfaces/documentos';
 import { TabbedItem } from 'devextreme/ui/form';
 import { By } from '@angular/platform-browser';
- 
+import * as $ from 'jquery';
 @Component({
   selector: 'app-pos',
   templateUrl: './pos.component.html',
@@ -124,17 +124,20 @@ getClientes(){
   this.documentos =  new CustomStore({
     key: 'idDocumento',
     load:   () => { console.log('voy a cargar documentos');
-      return this.sFacturacion.sendGetRequestLastValue('documentosActivos'); }
-    
-    
-
+      return this.sFacturacion.sendGetRequestLastValue('documentosActivos'); }    
   })
+  
     this.addButtonOptions = {
+      title : 'Documento Nuevo',
       icon: 'plus',
       onClick: () => {this.agregarDocumento()
       },
     };
     
+ }
+ enviarClick(){
+ // alert('click')
+  $('.dx-tab-selected').trigger('click')
  }
  eliminaDocumento(){
   this.sFacturacion.sendPutRequest(this.documentoActual,this.documentoActual.idDocumento,  `eliminarDocumento`  ).subscribe(
